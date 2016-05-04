@@ -1,0 +1,8 @@
+*.exe
+*.~ddp
+*.~dfm
+*.~pas
+*.~dpr
+/CCode/
+/CCode_new/
+

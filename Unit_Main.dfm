@@ -1,6 +1,6 @@
-object Mainform: TMainform
-  Left = 236
-  Top = 182
+object MainForm: TMainForm
+  Left = 207
+  Top = 133
   Width = 566
   Height = 480
   Caption = #1055#1083#1072#1090#1077#1078#1080' '#1079#1072' '#1090#1077#1093#1086#1089#1084#1086#1090#1088

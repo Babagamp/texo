@@ -7,7 +7,7 @@ uses
   Dialogs, UCashCode, StdCtrls, xmldom, XMLIntf, msxmldom, XMLDoc;
 
 type
-  TMainform = class(TForm)
+  TMainForm = class(TForm)
     GBMainInput: TGroupBox;
     BtnPay1: TButton;
     XMLDoc: TXMLDocument;
@@ -20,7 +20,7 @@ type
   end;
 
 var
-  Mainform: TMainform;
+  MainForm: TMainForm;
   Nominal:TNominal;
 
 implementation
@@ -29,7 +29,7 @@ uses Unit_Receiving;
 
 {$R *.dfm}
 
-procedure TMainform.FormCreate(Sender: TObject);
+procedure TMainForm.FormCreate(Sender: TObject);
 var x,y:integer;
 
 begin
@@ -54,7 +54,7 @@ begin
     Nominal.B5000 := XMLDoc.ChildNodes['config_cash'].ChildNodes['CheckBox5000rub'].NodeValue;
 end;
 
-procedure TMainform.BtnPay1Click(Sender: TObject);
+procedure TMainForm.BtnPay1Click(Sender: TObject);
 begin
   FormPay.ShowModal;
 end;

@@ -543,7 +543,6 @@ object MainForm: TMainForm
     FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
   OldCreateOrder = False
   OnCreate = FormCreate
-  OnResize = FormCreate
   PixelsPerInch = 96
   TextHeight = 13
   object GBMainInput: TGroupBox

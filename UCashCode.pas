@@ -184,7 +184,7 @@ implementation
 
 { TCashCodeBillValiddator }
 
-Uses SysUtils,Windows,DateUtils;
+Uses SysUtils,Windows,DateUtils,dialogs;
 
 procedure TCashCodeBillValidatorCCNET.ClearAnswer;
 begin
@@ -243,7 +243,7 @@ begin
     FComFile := CreateFile(DeviceName, GENERIC_READ or GENERIC_WRITE, 0, nil, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, 0);
 
     if FComFile = INVALID_HANDLE_VALUE
-    then raise Exception.Create('Не удалось открыть COM порт');
+    then raise Exception.Create('Не удалось открыть COM'+IntToStr(FNamberComPort)+' порт');
 
     if not SetupComm(FComFile, RxBufferSize, TxBufferSize)
     then raise Exception.Create('Не удалось задать буфер COM порта');

@@ -38,11 +38,18 @@ uses Unit_Receiving;
 {$R *.dfm}
 
 procedure TMainForm.MessagessFormCC(CodeMess: integer; mess: string);
+var LogFile : TextFile;
 begin
-  {if (CodeMess>100) and (CodeMess<=199)
-  then Memo1.Lines.Add('?????? : '+inttostr(CodeMess)+' : '+mess)
-  else Memo1.Lines.Add(inttostr(CodeMess)+' : '+mess);
-  Application.ProcessMessages; // ???? ?? ???????? ????? }
+  AssignFile(LogFile, 'error.log');
+  if FileExists('error.log') then Append(LogFile)
+    else Rewrite(LogFile);
+
+  writeln(LogFile,DateTimeToStr(Now) + inttostr(CodeMess)+' : '+mess);
+
+  CloseFile(LogFile);
+  ShowMessage(inttostr(CodeMess)+' : '+mess); //Выведем ошибку на экран
+  Application.Terminate;
+  Application.ProcessMessages; //   Чтоб не залипала форма
 end;
 
 procedure TMainForm.PolingBillCC(Nominal: word; var CanLoop: boolean);
@@ -82,19 +89,16 @@ begin
     // Создаем обьект для работы с купюроприемником
       CashCode:=TCashCodeBillValidatorCCNET.Create;
 
-    //  ????????? ???????    Установим события??????????
+    //  Установим события??????????
   CashCode.OnProcessMessage:=MessagessFormCC;
   CashCode.OnPolingBill:=PolingBillCC;
 
     // Попробуем подключить купюроприемник на COM1
     CashCode.NamberComPort := 1;
-    if CashCode.OpenComPort then
+    if  CashCode.OpenComPort then
     Begin
-      ShowMessage('Не подключен купюроприемник');
-      MainForm.Close;
-    end;
 
-
+    end
 
 end;
 
@@ -107,5 +111,7 @@ begin
   // Вызываем форму для приема платежа
   FormPay.ShowModal;
 end;
+
+
 
 end.

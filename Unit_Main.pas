@@ -24,6 +24,9 @@ type
   public
     { Public declarations }
     Sum,DaySum : integer;  // Нужно отслеживать принимаемую сумму, и общую сумму в купюроприемнике.
+    // Процедура записи в файл.
+    procedure SaveLog(FileName:string;Mess:string);
+
   end;
 
 var
@@ -37,27 +40,38 @@ uses Unit_Receiving;
 
 {$R *.dfm}
 
-procedure TMainForm.MessagessFormCC(CodeMess: integer; mess: string);
+procedure TMainForm.SaveLog(FileName:string;Mess:string);    //Вспомогательная процедура для записи в лог
 var LogFile : TextFile;
+Begin
+    AssignFile(LogFile, FileName);
+    if FileExists(FileName) then Append(LogFile)
+      else Rewrite(LogFile);
+    writeln(LogFile,Mess);
+    CloseFile(LogFile);
+end;
+
+procedure TMainForm.MessagessFormCC(CodeMess: integer; mess: string);
 begin
-  AssignFile(LogFile, 'error.log');
-  if FileExists('error.log') then Append(LogFile)
-    else Rewrite(LogFile);
 
-  writeln(LogFile,DateTimeToStr(Now) + inttostr(CodeMess)+' : '+mess);
+  if (CodeMess>=100) and (CodeMess<=199) then
+  Begin   // Пишем в лог ошибки с купюроприемником и завершаем работу.
+    SaveLog('Error.log',DateTimeToStr(Now) + ' ' + inttostr(CodeMess)+' : '+mess);
+    ShowMessage(inttostr(CodeMess)+' : '+mess); //Выведем ошибку на экран
+    Application.Terminate;
+  end
+  // Пишем в лог работу с купюроприемником
+  else SaveLog('Work.log',DateTimeToStr(Now) + ' ' + inttostr(CodeMess)+' : '+mess);
 
-  CloseFile(LogFile);
-  ShowMessage(inttostr(CodeMess)+' : '+mess); //Выведем ошибку на экран
-  Application.Terminate;
   Application.ProcessMessages; //   Чтоб не залипала форма
+
 end;
 
 procedure TMainForm.PolingBillCC(Nominal: word; var CanLoop: boolean);
 begin
-  {FSum:=FSum+Nominal;
-  Memo1.Lines.Add('??????? '+intToStr(Nominal)+' ??????');
-  RefreshSum();
-  Application.ProcessMessages; // ???? ?? ???????? ?????}
+  Sum:=Sum+Nominal;
+  FormPay.LReceive.Caption:= IntTostr(Sum);
+  FormPay.LLeftover.Caption:= IntToStr(Pay-Sum);
+  Application.ProcessMessages; // Чтобы не залипала форма
 end;
 
 
@@ -89,25 +103,25 @@ begin
     // Создаем обьект для работы с купюроприемником
       CashCode:=TCashCodeBillValidatorCCNET.Create;
 
-    //  Установим события??????????
-  CashCode.OnProcessMessage:=MessagessFormCC;
-  CashCode.OnPolingBill:=PolingBillCC;
+    //  Установим события
+    CashCode.OnProcessMessage:=MessagessFormCC;
+    CashCode.OnPolingBill:=PolingBillCC;
 
     // Попробуем подключить купюроприемник на COM1
     CashCode.NamberComPort := 1;
-    if  CashCode.OpenComPort then
-    Begin
+    CashCode.OpenComPort; //
 
-    end
-
-end;
+    end;
 
 procedure TMainForm.BtnPay1Click(Sender: TObject);
 begin
   // Установим величину платежа
   Pay := 500;
+  Sum := 0;
   FormPay.LPay.Caption:=IntToStr(Pay);
   FormPay.LLeftover.Caption:= IntToStr(Pay);
+  CashCode.Reset;
+  CashCode.EnableBillTypes(Nominal);
   // Вызываем форму для приема платежа
   FormPay.ShowModal;
 end;

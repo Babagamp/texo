@@ -55,12 +55,12 @@ begin
 
   if (CodeMess>=100) and (CodeMess<=199) then
   Begin   // Пишем в лог ошибки с купюроприемником и завершаем работу.
-    SaveLog('Error.log',DateTimeToStr(Now) + ' ' + inttostr(CodeMess)+' : '+mess);
+    SaveLog('error.log',DateTimeToStr(Now) + ' ' + inttostr(CodeMess)+' : ' + mess);
     ShowMessage(inttostr(CodeMess)+' : '+mess); //Выведем ошибку на экран
     Application.Terminate;
   end
   // Пишем в лог работу с купюроприемником
-  else SaveLog('Work.log',DateTimeToStr(Now) + ' ' + inttostr(CodeMess)+' : '+mess);
+  else SaveLog('work.log',DateTimeToStr(Now) + ' ' + inttostr(CodeMess)+' : ' + mess);
 
   Application.ProcessMessages; //   Чтоб не залипала форма
 
@@ -91,14 +91,22 @@ begin
     GBMainInput.Top := y;
 
     //Инициализируем переменную с принимаемыми купюрами
-    XMLDoc.LoadFromFile('config.xml');
-    XMLDoc.Active := true;
-    Nominal.B10 := XMLDoc.ChildNodes['config_cash'].ChildNodes['CheckBox10rub'].NodeValue;
-    Nominal.B50 := XMLDoc.ChildNodes['config_cash'].ChildNodes['CheckBox50rub'].NodeValue;
-    Nominal.B100 := XMLDoc.ChildNodes['config_cash'].ChildNodes['CheckBox100rub'].NodeValue;
-    Nominal.B500 := XMLDoc.ChildNodes['config_cash'].ChildNodes['CheckBox500rub'].NodeValue;
-    Nominal.B1000 := XMLDoc.ChildNodes['config_cash'].ChildNodes['CheckBox1000rub'].NodeValue;
-    Nominal.B5000 := XMLDoc.ChildNodes['config_cash'].ChildNodes['CheckBox5000rub'].NodeValue;
+    If FileExists('config.xml') then
+      Begin
+        XMLDoc.LoadFromFile('config.xml');
+        XMLDoc.Active := true;
+        Nominal.B10 := XMLDoc.ChildNodes['config_cash'].ChildNodes['CheckBox10rub'].NodeValue;
+        Nominal.B50 := XMLDoc.ChildNodes['config_cash'].ChildNodes['CheckBox50rub'].NodeValue;
+        Nominal.B100 := XMLDoc.ChildNodes['config_cash'].ChildNodes['CheckBox100rub'].NodeValue;
+        Nominal.B500 := XMLDoc.ChildNodes['config_cash'].ChildNodes['CheckBox500rub'].NodeValue;
+        Nominal.B1000 := XMLDoc.ChildNodes['config_cash'].ChildNodes['CheckBox1000rub'].NodeValue;
+        Nominal.B5000 := XMLDoc.ChildNodes['config_cash'].ChildNodes['CheckBox5000rub'].NodeValue;
+      end
+     else
+      Begin
+        Showmessage('Создайте файл с конфигурацией "config.xml" c помощью утилиты config.exe');
+        Application.Terminate;
+      end;
 
     // Создаем обьект для работы с купюроприемником
       CashCode:=TCashCodeBillValidatorCCNET.Create;

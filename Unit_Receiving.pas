@@ -54,12 +54,15 @@ procedure TFormPay.Button1Click(Sender: TObject);
 begin
   CashCode.CanPollingLoop:=false;
   MainForm.SaveLog('work.log',DateTimeToStr(Now) + ' Принято ' + IntToStr(Sum));
+  // Sleep(3000);    Фигня какая-то срабатывает выход только во второй раз
   FormPay.Close;
+
 end;
+
 
 procedure TFormPay.FormActivate(Sender: TObject);
 begin
-Sum:=CashCode.PollingLoop(Pay,20);
+    Sum:=CashCode.PollingLoop(Pay,20);
 end;
 
 end.

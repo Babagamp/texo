@@ -126,7 +126,7 @@ begin
 procedure TMainForm.BtnPay1Click(Sender: TObject);
 begin
   // Установим величину платежа
-  Pay := 500;
+  Pay := 100;
   Sum := 0;
   FormPay.LPay.Caption:=IntToStr(Pay);
   FormPay.LLeftover.Caption:= IntToStr(Pay);
@@ -135,6 +135,8 @@ begin
   CashCode.EnableBillTypes(Nominal);
   // Вызываем форму для приема платежа
   FormPay.ShowModal;
+  CashCode.Reset;
+
 end;
 
 

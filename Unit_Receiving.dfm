@@ -1,7 +1,7 @@
 object FormPay: TFormPay
   Left = 298
   Top = 134
-  Width = 646
+  Width = 647
   Height = 550
   Caption = #1055#1088#1080#1077#1084' '#1087#1083#1072#1090#1077#1078#1072' '#1079#1072
   Color = clBtnFace

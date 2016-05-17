@@ -12,6 +12,7 @@ object FormPay: TFormPay
   Font.Style = []
   OldCreateOrder = False
   WindowState = wsMaximized
+  OnActivate = FormActivate
   OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 13

@@ -18,6 +18,7 @@ type
     LLeftover: TLabel;
     procedure FormCreate(Sender: TObject);
     procedure Button1Click(Sender: TObject);
+    procedure FormActivate(Sender: TObject);
   private
     { Private declarations }
   public
@@ -51,7 +52,14 @@ end;
 
 procedure TFormPay.Button1Click(Sender: TObject);
 begin
+  CashCode.CanPollingLoop:=false;
+  MainForm.SaveLog('work.log',DateTimeToStr(Now) + ' Принято ' + IntToStr(Sum));
   FormPay.Close;
+end;
+
+procedure TFormPay.FormActivate(Sender: TObject);
+begin
+Sum:=CashCode.PollingLoop(Pay,20);
 end;
 
 end.

@@ -15,17 +15,17 @@ type
     procedure BtnPay1Click(Sender: TObject);
   private
     { Private declarations }
-    CashCode:TCashCodeBillValidatorCCNET; // Обьект купюроприемник
 
     // События из примера, пока не знаю как они юзаются
     procedure MessagessFormCC(CodeMess:integer;mess:string);
     procedure PolingBillCC(Nominal:word;var CanLoop:boolean);
 
+
   public
     { Public declarations }
-    Sum,DaySum : integer;  // Нужно отслеживать принимаемую сумму, и общую сумму в купюроприемнике.
-    // Процедура записи в файл.
+        // Процедура записи в файл.
     procedure SaveLog(FileName:string;Mess:string);
+
 
   end;
 
@@ -33,6 +33,8 @@ var
   MainForm: TMainForm;
   Nominal:TNominal;  // Обьект для отслеживания разрешенных для приема купюр
   Pay: integer;  // Переменная для отслеживания количества необходимого для оплаты
+  Sum,DaySum : integer;  // Нужно отслеживать принимаемую сумму, и общую сумму в купюроприемнике
+  CashCode:TCashCodeBillValidatorCCNET; // Обьект купюроприемник
 
 implementation
 
@@ -62,7 +64,7 @@ begin
   // Пишем в лог работу с купюроприемником
   else SaveLog('work.log',DateTimeToStr(Now) + ' ' + inttostr(CodeMess)+' : ' + mess);
 
-  Application.ProcessMessages; //   Чтоб не залипала форма
+  Application.ProcessMessages; //   Чтоб не залипала форма  (Здесь нужна, иначе форма залипает)
 
 end;
 
@@ -128,6 +130,7 @@ begin
   Sum := 0;
   FormPay.LPay.Caption:=IntToStr(Pay);
   FormPay.LLeftover.Caption:= IntToStr(Pay);
+  SaveLog('work.log',DateTimeToStr(Now) + ' Принимаем ' + IntToStr(Pay) + 'р.');
   CashCode.Reset;
   CashCode.EnableBillTypes(Nominal);
   // Вызываем форму для приема платежа

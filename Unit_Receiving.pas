@@ -111,12 +111,12 @@ begin
     LReceive.Caption:= IntTostr(Sum);
 
     // Попробуем подключить купюроприемник на COM1
-    CashCode.NamberComPort := 1;
+    CashCode.NamberComPort := NumberCOM;
     If CashCode.OpenComPort then
      Begin
        CashCode.Reset;
        CashCode.EnableBillTypes(Nominal);
-       Sum:=CashCode.PollingLoop(Pay,20);   //запуск приема денег
+       Sum:=CashCode.PollingLoop(Pay,TimeOut);   //запуск приема денег
        CashCode.EnableBillTypes(NoNominal);
        CashCode.Poll;
        PostMessage(FormPay.Handle,WM_CLOSE,0,0);

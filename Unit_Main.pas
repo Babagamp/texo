@@ -27,7 +27,11 @@ var
   MainForm: TMainForm;
   Nominal,NoNominal:TNominal;  // Обьект для отслеживания разрешенных для приема купюр
   Pay: integer;  // Переменная для отслеживания количества необходимого для оплаты
-  Sum,DaySum : integer;  // Нужно отслеживать принимаемую сумму, и общую сумму в купюроприемнике
+  Sum,DaySum,AllSum :integer;  // Нужно отслеживать принимаемую, дневную сумму и общую сумму в купюроприемнике
+  NumberCOM :integer;  //  Здесь будет указано на каком порту висит купюроприемник
+  TimeOut : integer; // Здесь будет ожидания клиента с секундах, для приема денег
+  // Очень хочется реализовать отмену ожидания, если клиент хоть что-то засунул в купюроприемник
+  // Только вопрос, а надо ли?
 
 implementation
 
@@ -61,16 +65,29 @@ begin
     GBMainInput.Top := y;
 
     //Инициализируем переменную с принимаемыми купюрами
+    // Проверка просто существования файла недостаточна
     If FileExists('config.xml') then
       Begin
+        // Очень хочется проверить правльность загрузка xml файла, но незнаю пока как
         XMLDoc.LoadFromFile('config.xml');
         XMLDoc.Active := true;
-        Nominal.B10 := XMLDoc.ChildNodes['config_cash'].ChildNodes['CheckBox10rub'].NodeValue;
-        Nominal.B50 := XMLDoc.ChildNodes['config_cash'].ChildNodes['CheckBox50rub'].NodeValue;
-        Nominal.B100 := XMLDoc.ChildNodes['config_cash'].ChildNodes['CheckBox100rub'].NodeValue;
-        Nominal.B500 := XMLDoc.ChildNodes['config_cash'].ChildNodes['CheckBox500rub'].NodeValue;
-        Nominal.B1000 := XMLDoc.ChildNodes['config_cash'].ChildNodes['CheckBox1000rub'].NodeValue;
-        Nominal.B5000 := XMLDoc.ChildNodes['config_cash'].ChildNodes['CheckBox5000rub'].NodeValue;
+
+        With  XMLDoc.ChildNodes['config'] do
+        begin
+          Nominal.B10 := ChildNodes['cash'].ChildNodes['CheckBox10rub'].NodeValue;
+          Nominal.B50 := ChildNodes['cash'].ChildNodes['CheckBox50rub'].NodeValue;
+          Nominal.B100 := ChildNodes['cash'].ChildNodes['CheckBox100rub'].NodeValue;
+          Nominal.B500 := ChildNodes['cash'].ChildNodes['CheckBox500rub'].NodeValue;
+          Nominal.B1000 := ChildNodes['cash'].ChildNodes['CheckBox1000rub'].NodeValue;
+          Nominal.B5000 := ChildNodes['cash'].ChildNodes['CheckBox5000rub'].NodeValue;
+
+          NumberCOM := ChildNodes['COM'].NodeValue;
+          TimeOut := ChildNodes['TimeOut'].NodeValue;
+
+          //ShowMessage(IntToStr(NumberCOM) + ' ' + IntToStr(TimeOut));    //  Это просто проверка на всякий ...
+
+        end;
+
       end
      else
       Begin

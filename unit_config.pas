@@ -5,7 +5,7 @@ interface
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, xmldom, XMLIntf, msxmldom, XMLDoc, StdCtrls, ExtCtrls, DB,
-  DBClient;
+  DBClient, ComCtrls, Spin, Mask;
 
 type
   TFormConfig = class(TForm)
@@ -19,6 +19,11 @@ type
     CheckBox5000rub: TCheckBox;
     ButtonSave: TButton;
     ButtonClose: TButton;
+    GroupBox1: TGroupBox;
+    Label1: TLabel;
+    SpinEdit1: TSpinEdit;
+    Label2: TLabel;
+    Edit1: TEdit;
     procedure ButtonCloseClick(Sender: TObject);
     procedure ButtonSaveClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -43,19 +48,41 @@ end;
 procedure TFormConfig.ButtonSaveClick(Sender: TObject);
    var i: integer;
 begin
+
+   if not TryStrToInt(Edit1.Text,i) then
+     begin
+       ShowMessage('Ошибка. Введите правильное число секунд');
+       Exit;
+     end;
+
+   ShowMessage('Сохраняем в xml');
    XMLDoc.Active := true;
 
    XMLDoc.Version := '1.0';
    XMLDoc.Encoding := 'windows-1251';
-   XMLDoc.AddChild('config_cash');
-   For i:=0 to GroupBoxCash.ControlCount - 1 do
-    Begin
-     XMLDoc.ChildNodes['config_cash'].AddChild(GroupBoxCash.Controls[i].Name);
-     XMLDoc.ChildNodes['config_cash'].ChildValues[GroupBoxCash.Controls[i].Name] := (GroupBoxCash.Controls[i] as TCheckBox).Checked;
-    end;
+
+   XMLDoc.AddChild('config');
+
+   With  XMLDoc.ChildNodes['config'] do
+   begin
+     AddChild('COM');
+     ChildValues['COM'] := IntToStr(SpinEdit1.Value);
+
+     AddChild('cash');
+     For i:=0 to GroupBoxCash.ControlCount - 1 do
+     Begin
+       ChildNodes['cash'].AddChild(GroupBoxCash.Controls[i].Name);
+       ChildNodes['cash'].ChildValues[GroupBoxCash.Controls[i].Name] := (GroupBoxCash.Controls[i] as TCheckBox).Checked;
+     end;
+
+   end;
+
    XMLDoc.SaveToFile('config.xml');
+
    XMLDoc.Active := false;
    //XMLDoc.CleanupInstance;
+
+   XMLDoc.Free;
 end;
 
 procedure TFormConfig.FormCreate(Sender: TObject);

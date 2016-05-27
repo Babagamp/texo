@@ -1,8 +1,8 @@
 object FormConfig: TFormConfig
   Left = 192
   Top = 124
-  Width = 231
-  Height = 218
+  Width = 412
+  Height = 227
   Caption = #1053#1072#1089#1090#1088#1086#1081#1082#1080
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -546,7 +546,7 @@ object FormConfig: TFormConfig
   PixelsPerInch = 96
   TextHeight = 13
   object GroupBoxCash: TGroupBox
-    Left = 8
+    Left = 192
     Top = 8
     Width = 193
     Height = 113
@@ -602,7 +602,7 @@ object FormConfig: TFormConfig
     end
   end
   object ButtonSave: TButton
-    Left = 8
+    Left = 216
     Top = 144
     Width = 75
     Height = 25
@@ -611,7 +611,7 @@ object FormConfig: TFormConfig
     OnClick = ButtonSaveClick
   end
   object ButtonClose: TButton
-    Left = 128
+    Left = 312
     Top = 144
     Width = 75
     Height = 25
@@ -619,9 +619,50 @@ object FormConfig: TFormConfig
     TabOrder = 2
     OnClick = ButtonCloseClick
   end
+  object GroupBox1: TGroupBox
+    Left = 16
+    Top = 8
+    Width = 169
+    Height = 161
+    Caption = #1053#1072#1089#1090#1088#1086#1081#1082#1080
+    TabOrder = 3
+    object Label1: TLabel
+      Left = 8
+      Top = 32
+      Width = 53
+      Height = 13
+      Caption = 'COM '#1087#1086#1088#1090':'
+    end
+    object Label2: TLabel
+      Left = 8
+      Top = 72
+      Width = 108
+      Height = 13
+      Caption = #1054#1078#1080#1076#1072#1090#1100' '#1082#1091#1087#1102#1088#1099' ('#1089'): '
+    end
+    object SpinEdit1: TSpinEdit
+      Left = 66
+      Top = 30
+      Width = 33
+      Height = 22
+      EditorEnabled = False
+      MaxValue = 64
+      MinValue = 1
+      TabOrder = 0
+      Value = 1
+    end
+    object Edit1: TEdit
+      Left = 120
+      Top = 70
+      Width = 33
+      Height = 21
+      TabOrder = 1
+      Text = '40'
+    end
+  end
   object XMLDoc: TXMLDocument
     Left = 8
-    Top = 120
+    Top = 152
     DOMVendorDesc = 'MSXML'
   end
 end

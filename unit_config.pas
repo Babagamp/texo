@@ -68,6 +68,9 @@ begin
      AddChild('COM');
      ChildValues['COM'] := IntToStr(SpinEdit1.Value);
 
+     AddChild('TimeOut');
+     ChildValues['TimeOut'] := Edit1.Text;
+
      AddChild('cash');
      For i:=0 to GroupBoxCash.ControlCount - 1 do
      Begin
@@ -82,26 +85,36 @@ begin
    XMLDoc.Active := false;
    //XMLDoc.CleanupInstance;
 
-   XMLDoc.Free;
+   //XMLDoc.Free;  // Глюк какой-то после этого....
 end;
 
 procedure TFormConfig.FormCreate(Sender: TObject);
  var i: integer;
 
 begin
+
+  // Проверка на существование файла (но ее недостаточно?)
   If FileExists('config.xml') then
-  Begin
+  begin
     XMLDoc.Active := true;
     XMLDoc.LoadFromFile('config.xml');
-    For i := 0 to XMLDoc.ChildNodes['config_cash'].ChildNodes.Count-1 do
-      Begin
-        (GroupBoxCash.Controls[i] as TCheckBox).Checked := XMLDoc.ChildNodes['config_cash'].ChildNodes[(GroupBoxCash.Controls[i] as TCheckBox).Name].NodeValue;
-      End;
+    // Здесь нужно сделать проверку на существование Этих нод, а то может быть ошибка
+    With  XMLDoc.ChildNodes['config'] do
+    begin
+      For i := 0 to ChildNodes['cash'].ChildNodes.Count-1 do
+      begin
+       (GroupBoxCash.Controls[i] as TCheckBox).Checked := ChildNodes['cash'].ChildNodes[(GroupBoxCash.Controls[i] as TCheckBox).Name].NodeValue;
+      end;
+
+      SpinEdit1.Value := ChildNodes['COM'].NodeValue;
+      Edit1.Text := ChildNodes['TimeOut'].NodeValue;
+
+    end;
     XMLDoc.Active := false;
-    XMLDoc.CleanupInstance;
+    XMLDoc.CleanupInstance;   // Не знаю надо ли это?
   end
   else
     FormConfig.ButtonSaveClick(Sender);
-end;
+End;
 
-end.
+End.

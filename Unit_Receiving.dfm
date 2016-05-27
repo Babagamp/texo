@@ -13,6 +13,7 @@ object FormPay: TFormPay
   OldCreateOrder = False
   WindowState = wsMaximized
   OnActivate = FormActivate
+  OnClose = FormClose
   OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 13

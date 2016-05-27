@@ -4,7 +4,7 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, UCashCode, StdCtrls, xmldom, XMLIntf, msxmldom, XMLDoc;
+  Dialogs, StdCtrls, xmldom, XMLIntf, msxmldom, XMLDoc, UCashCode;
 
 type
   TMainForm = class(TForm)
@@ -15,12 +15,6 @@ type
     procedure BtnPay1Click(Sender: TObject);
   private
     { Private declarations }
-
-    // События из примера, пока не знаю как они юзаются
-    procedure MessagessFormCC(CodeMess:integer;mess:string);
-    procedure PolingBillCC(Nominal:word;var CanLoop:boolean);
-
-
   public
     { Public declarations }
         // Процедура записи в файл.
@@ -31,10 +25,9 @@ type
 
 var
   MainForm: TMainForm;
-  Nominal:TNominal;  // Обьект для отслеживания разрешенных для приема купюр
+  Nominal,NoNominal:TNominal;  // Обьект для отслеживания разрешенных для приема купюр
   Pay: integer;  // Переменная для отслеживания количества необходимого для оплаты
   Sum,DaySum : integer;  // Нужно отслеживать принимаемую сумму, и общую сумму в купюроприемнике
-  CashCode:TCashCodeBillValidatorCCNET; // Обьект купюроприемник
 
 implementation
 
@@ -51,31 +44,6 @@ Begin
     writeln(LogFile,Mess);
     CloseFile(LogFile);
 end;
-
-procedure TMainForm.MessagessFormCC(CodeMess: integer; mess: string);
-begin
-
-  if (CodeMess>=100) and (CodeMess<=199) then
-  Begin   // Пишем в лог ошибки с купюроприемником и завершаем работу.
-    SaveLog('error.log',DateTimeToStr(Now) + ' ' + inttostr(CodeMess)+' : ' + mess);
-    ShowMessage(inttostr(CodeMess)+' : '+mess); //Выведем ошибку на экран
-    Application.Terminate;
-  end
-  // Пишем в лог работу с купюроприемником
-  else SaveLog('work.log',DateTimeToStr(Now) + ' ' + inttostr(CodeMess)+' : ' + mess);
-
-  Application.ProcessMessages; //   Чтоб не залипала форма  (Здесь нужна, иначе форма залипает)
-
-end;
-
-procedure TMainForm.PolingBillCC(Nominal: word; var CanLoop: boolean);
-begin
-  Sum:=Sum+Nominal;
-  FormPay.LReceive.Caption:= IntTostr(Sum);
-  FormPay.LLeftover.Caption:= IntToStr(Pay-Sum);
-  Application.ProcessMessages; // Чтобы не залипала форма
-end;
-
 
 
 procedure TMainForm.FormCreate(Sender: TObject);
@@ -110,32 +78,22 @@ begin
         Application.Terminate;
       end;
 
-    // Создаем обьект для работы с купюроприемником
-      CashCode:=TCashCodeBillValidatorCCNET.Create;
-
-    //  Установим события
-    CashCode.OnProcessMessage:=MessagessFormCC;
-    CashCode.OnPolingBill:=PolingBillCC;
-
-    // Попробуем подключить купюроприемник на COM1
-    CashCode.NamberComPort := 1;
-    CashCode.OpenComPort; //
+      NoNominal.B10   :=   false;
+      NoNominal.B50   :=   false;
+      NoNominal.B100  :=   false;
+      NoNominal.B500  :=   false;
+      NoNominal.B1000  :=   false;
+      NoNominal.B5000  :=   false;
 
     end;
 
 procedure TMainForm.BtnPay1Click(Sender: TObject);
 begin
-  // Установим величину платежа
-  Pay := 100;
-  Sum := 0;
-  FormPay.LPay.Caption:=IntToStr(Pay);
-  FormPay.LLeftover.Caption:= IntToStr(Pay);
+  Pay := 200;  // Установим величину платежа
+  Sum := 0;    // обнулим количество полученных денег
   SaveLog('work.log',DateTimeToStr(Now) + ' Принимаем ' + IntToStr(Pay) + 'р.');
-  CashCode.Reset;
-  CashCode.EnableBillTypes(Nominal);
   // Вызываем форму для приема платежа
   FormPay.ShowModal;
-  CashCode.Reset;
 
 end;
 

@@ -45,6 +45,17 @@ type
     Label1: TLabel;
     Edit1: TEdit;
     Panel1: TPanel;
+    SpeedButton37: TSpeedButton;
+    SpeedButton38: TSpeedButton;
+    SpeedButton39: TSpeedButton;
+    SpeedButton40: TSpeedButton;
+    SpeedButton41: TSpeedButton;
+    SpeedButton42: TSpeedButton;
+    SpeedButton43: TSpeedButton;
+    SpeedButton44: TSpeedButton;
+    SpeedButton45: TSpeedButton;
+    SpeedButton35: TSpeedButton;
+    SpeedButton36: TSpeedButton;
     procedure SpeedButton34Click(Sender: TObject);
   private
     { Private declarations }

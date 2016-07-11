@@ -4,7 +4,7 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, StdCtrls, xmldom, XMLIntf, msxmldom, XMLDoc, UCashCode;
+  Dialogs, StdCtrls, xmldom, XMLIntf, msxmldom, XMLDoc, UCashCode, printers;
 
 type
   TMainForm = class(TForm)
@@ -18,7 +18,8 @@ type
   public
     { Public declarations }
         // Процедура записи в файл.
-    procedure SaveLog(FileName:string;Mess:string);
+    procedure SaveLog(FileName:string;Mess:string);  //Процедура для записи лога
+    procedure PrintCheck(Sum:integer;SumPerevod:integer); //Процедура для распечатки чека
 
 
   end;
@@ -39,7 +40,58 @@ uses Unit_Receiving;
 
 {$R *.dfm}
 
-procedure TMainForm.SaveLog(FileName:string;Mess:string);    //Вспомогательная процедура для записи в лог
+// Распечатываем чек...
+procedure TMainForm.PrintCheck(Sum:integer;SumPerevod:Integer);
+  var f : TextFile;
+  today : TDateTime;
+
+begin
+  AssignPrn(f);
+  today := now();
+  try
+    rewrite(f);
+    writeln(f,'ОПЛАТА.RU');
+    writeln(f,'Банк "Богородский" (ООО) ИНН 5245004890');
+    writeln(f,'Лицензия ЦБ РФ №1277 от 23.08.2012г.');
+    writeln(f,'Перевод принят банкоматом: 85202327');
+    writeln(f,'Адрес: арзамас , короленко, 2');
+    writeln(f,'"СТО"');
+    writeln(f,'Дата: ' + DateToStr(today) + '  Время: ' + TimeToStr(today));
+    writeln(f,'Чек/квитанция: 000000000');
+    writeln(f,'***************************************************************');
+    writeln(f,'Получатель: ИП Молодкин Владимир Александрович');
+    writeln(f,'ИНН 520200114474');
+    writeln(f,'ОКТМО');
+    writeln(f,'КБК');
+    writeln(f,'Р/с 40802810200000000457  В ЗАО Комбанк "Арзамас" г.Арзамас');
+    writeln(f,'БИК 042202001');
+    writeln(f,'----------------------------------------------------------------------');
+    writeln(f,'Наименование:');
+    writeln(f,'Технический осмотр');
+    writeln(f,'');
+    writeln(f,'ФИО платильщика:');
+    writeln(f,'В.В Петрович');
+    writeln(f,'');
+    writeln(f,'***************************************************************');
+    writeln(f,'Принято наличными: ' + IntToStr(Sum));
+    writeln(f,'Сумма перевода: ' + IntToStr(SumPerevod));
+    writeln(f,'Плата за перевод: ' + IntToStr(Sum-SumPerevod));
+    writeln(f,'***************************************************************');
+    writeln(f,'СПАСИБО, СОХРАНИТЕ ЧЕК!');
+    writeln(f,'ТЕЛЕФОН ЦЕНТРА ОБСЛУЖИВАНИЯ');
+    writeln(f,'С 8:00 ДО 18:00 ПО МОСКОВСКОМУ ВРЕМЕНИ)');
+    writeln(f,'+7 831 268-22-22,+7 920 019 44-44');
+    writeln(f,' ');
+    writeln(f,' ');
+  finally
+    closeFile(f);
+  end;
+
+end;
+
+
+//Вспомогательная процедура для записи в лог
+procedure TMainForm.SaveLog(FileName:string;Mess:string);
 var LogFile : TextFile;
 Begin
     AssignFile(LogFile, FileName);
@@ -105,12 +157,21 @@ begin
     end;
 
 procedure TMainForm.BtnPay1Click(Sender: TObject);
+var SumPerevod: integer;
+
 begin
-  Pay := 200;  // Установим величину платежа
+  Pay := 450;  // Установим величину платежа
   Sum := 0;    // обнулим количество полученных денег
+  SumPerevod := 390; // Сумма перевода (да!!!!)
   SaveLog('work.log',DateTimeToStr(Now) + ' Принимаем ' + IntToStr(Pay) + 'р.');
   // Вызываем форму для приема платежа
   FormPay.ShowModal;
+
+  if sum <> 0 then
+    begin
+       PrintCheck(Sum,SumPerevod);
+    end
+
 
 end;
 

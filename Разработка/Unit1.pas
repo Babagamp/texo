@@ -56,7 +56,13 @@ type
     SpeedButton45: TSpeedButton;
     SpeedButton35: TSpeedButton;
     SpeedButton36: TSpeedButton;
+    SpeedButton46: TSpeedButton;
+    SpeedButton47: TSpeedButton;
+    SpeedButton48: TSpeedButton;
+    SpeedButton49: TSpeedButton;
     procedure SpeedButton34Click(Sender: TObject);
+    procedure SpeedButton45Click(Sender: TObject);
+    procedure SpeedButton49Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -82,6 +88,41 @@ Edit1.Text:=Dest;
 Edit1.SelStart:=i;
 Label1.Caption:=IntToStr(Edit1.SelStart);
 
+end;
+
+procedure TForm1.SpeedButton45Click(Sender: TObject);
+var str: String;
+    i:integer;
+begin
+str := Edit1.Text;
+i:=Edit1.SelStart;
+Delete(Str,i,1);
+Edit1.Text:=str;
+Edit1.SelStart:=i-1;
+Label1.Caption:=IntToStr(Edit1.SelStart);
+end;
+
+procedure TForm1.SpeedButton49Click(Sender: TObject);
+var count: integer;
+begin
+    If SpeedButton49.Caption = 'Строчные' then
+      Begin
+        for Count:=0 to Panel1.ControlCount-1 do
+          Begin
+             (Panel1.Controls[count] as TSpeedButton).Caption:=LowerCase((Panel1.Controls[count] as TSpeedButton).Caption);
+          end;
+        SpeedButton49.Caption:='Заглавные';
+        //SpeedButton34.Caption:='Пробел';
+      end
+      else
+      Begin
+        for Count:=0 to Panel1.ControlCount-1 do
+          Begin
+             (Panel1.Controls[count] as TSpeedButton).Caption:=UpperCase((Panel1.Controls[count] as TSpeedButton).Caption);
+          end;
+        SpeedButton49.Caption:='Строчные';
+        //SpeedButton34.Caption:='Пробел';
+      end;
 end;
 
 end.

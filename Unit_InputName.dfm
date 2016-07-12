@@ -11,16 +11,10 @@ object FormInputName: TFormInputName
   Font.Name = 'MS Sans Serif'
   Font.Style = []
   OldCreateOrder = False
+  OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 13
-  object Label1: TLabel
-    Left = 136
-    Top = 168
-    Width = 32
-    Height = 13
-    Caption = 'Label1'
-  end
-  object Panel1: TPanel
+  object PanelKeyboard: TPanel
     Left = 40
     Top = 304
     Width = 641
@@ -418,12 +412,12 @@ object FormInputName: TFormInputName
       OnClick = SpeedButtonUpDownCase
     end
   end
-  object Edit1: TEdit
+  object EditInput: TEdit
     Left = 184
     Top = 128
     Width = 377
     Height = 21
     TabOrder = 1
-    Text = 'Edit1'
+    Text = 'EditInput'
   end
 end

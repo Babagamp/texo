@@ -42,9 +42,8 @@ type
     SpeedButton33: TSpeedButton;
     SpeedButton34: TSpeedButton;
     SpeedButton04: TSpeedButton;
-    Label1: TLabel;
-    Edit1: TEdit;
-    Panel1: TPanel;
+    EditInput: TEdit;
+    PanelKeyboard: TPanel;
     SpeedButton37: TSpeedButton;
     SpeedButton38: TSpeedButton;
     SpeedButton39: TSpeedButton;
@@ -63,6 +62,7 @@ type
     procedure SpeedButtonPressKey(Sender: TObject);
     procedure SpeedButtonBackSpace(Sender: TObject);
     procedure SpeedButtonUpDownCase(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
   public
@@ -71,45 +71,45 @@ type
 
 var
   FormInputName: TFormInputName;
-  
+
 implementation
 
 {$R *.dfm}
 
+// ввода в строку редактирования
 procedure TFormInputName.SpeedButtonPressKey(Sender: TObject);
 var Substr,Dest: string;
     i:integer;
 begin
 SubStr:=(Sender as TSpeedButton).Caption;
-Dest:=VarToStr(Edit1.Text);
-i:=Edit1.SelStart+1;
+Dest:=VarToStr(EditInput.Text);
+i:=EditInput.SelStart+1;
 Insert(Substr, Dest, i);
-Edit1.Text:=Dest;
-Edit1.SelStart:=i;
-Label1.Caption:=IntToStr(Edit1.SelStart);
-
+EditInput.Text:=Dest;
+EditInput.SelStart:=i;
 end;
 
+// Удаление символа слева в строке редактирования
 procedure TFormInputName.SpeedButtonBackSpace(Sender: TObject);
 var str: String;
     i:integer;
 begin
-str := Edit1.Text;
-i:=Edit1.SelStart;
+str := EditInput.Text;
+i:=EditInput.SelStart;
 Delete(Str,i,1);
-Edit1.Text:=str;
-Edit1.SelStart:=i-1;
-Label1.Caption:=IntToStr(Edit1.SelStart);
+EditInput.Text:=str;
+EditInput.SelStart:=i-1;
 end;
 
+// Переключаем ввод больших-маленьких букв
 procedure TFormInputName.SpeedButtonUpDownCase(Sender: TObject);
 var count: integer;
 begin
     If SpeedButton49.Caption = 'Строчные' then
       Begin
-        for Count:=0 to Panel1.ControlCount-1 do
+        for Count:=0 to PanelKeyboard.ControlCount-1 do
           Begin
-             (Panel1.Controls[count] as TSpeedButton).Caption:=AnsiLowerCase((Panel1.Controls[count] as TSpeedButton).Caption);
+             (PanelKeyboard.Controls[count] as TSpeedButton).Caption:=AnsiLowerCase((PanelKeyboard.Controls[count] as TSpeedButton).Caption);
           end;
         SpeedButton49.Caption:='Заглавные';
         //SpeedButton34.Caption:='Пробел';
@@ -117,14 +117,29 @@ begin
       end
       else
       Begin
-        for Count:=0 to Panel1.ControlCount-1 do
+        for Count:=0 to PanelKeyboard.ControlCount-1 do
           Begin
-             (Panel1.Controls[count] as TSpeedButton).Caption:=AnsiUpperCase((Panel1.Controls[count] as TSpeedButton).Caption);
+             (PanelKeyboard.Controls[count] as TSpeedButton).Caption:=AnsiUpperCase((PanelKeyboard.Controls[count] as TSpeedButton).Caption);
           end;
         SpeedButton49.Caption:='Строчные';
         //SpeedButton34.Caption:='Пробел';
         SpeedButton45.Caption:='Стереть';
       end;
+end;
+
+procedure TFormInputName.FormCreate(Sender: TObject);
+    var x,y:integer; //Это переменнные для рассчета координат
+begin
+    // Сделаем окно во весь экран
+    FormInputName.BorderStyle:= bsNone;
+    FormInputName.WindowState:= wsMaximized;
+
+    //Выровняем Бокс с кнопками по центру
+    //y:=(FormInputName.ClientHeight - PanelKeyboard.Height) div 2;
+    //x:=(FormPay.ClientWidth - PInput.Width) div 2;
+    //PInput.Left := x;
+    //PInput.Top := y;
+
 end;
 
 end.

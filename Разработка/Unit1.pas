@@ -60,9 +60,9 @@ type
     SpeedButton47: TSpeedButton;
     SpeedButton48: TSpeedButton;
     SpeedButton49: TSpeedButton;
-    procedure SpeedButton34Click(Sender: TObject);
-    procedure SpeedButton45Click(Sender: TObject);
-    procedure SpeedButton49Click(Sender: TObject);
+    procedure SpeedButtonPressKey(Sender: TObject);
+    procedure SpeedButtonBackSpace(Sender: TObject);
+    procedure SpeedButtonUpDownCase(Sender: TObject);
   private
     { Private declarations }
   public
@@ -76,7 +76,7 @@ implementation
 
 {$R *.dfm}
 
-procedure TForm1.SpeedButton34Click(Sender: TObject);
+procedure TForm1.SpeedButtonPressKey(Sender: TObject);
 var Substr,Dest: string;
     i:integer;
 begin
@@ -90,7 +90,7 @@ Label1.Caption:=IntToStr(Edit1.SelStart);
 
 end;
 
-procedure TForm1.SpeedButton45Click(Sender: TObject);
+procedure TForm1.SpeedButtonBackSpace(Sender: TObject);
 var str: String;
     i:integer;
 begin
@@ -102,26 +102,28 @@ Edit1.SelStart:=i-1;
 Label1.Caption:=IntToStr(Edit1.SelStart);
 end;
 
-procedure TForm1.SpeedButton49Click(Sender: TObject);
+procedure TForm1.SpeedButtonUpDownCase(Sender: TObject);
 var count: integer;
 begin
     If SpeedButton49.Caption = 'Строчные' then
       Begin
         for Count:=0 to Panel1.ControlCount-1 do
           Begin
-             (Panel1.Controls[count] as TSpeedButton).Caption:=LowerCase((Panel1.Controls[count] as TSpeedButton).Caption);
+             (Panel1.Controls[count] as TSpeedButton).Caption:=AnsiLowerCase((Panel1.Controls[count] as TSpeedButton).Caption);
           end;
         SpeedButton49.Caption:='Заглавные';
         //SpeedButton34.Caption:='Пробел';
+        SpeedButton45.Caption:='Стереть';
       end
       else
       Begin
         for Count:=0 to Panel1.ControlCount-1 do
           Begin
-             (Panel1.Controls[count] as TSpeedButton).Caption:=UpperCase((Panel1.Controls[count] as TSpeedButton).Caption);
+             (Panel1.Controls[count] as TSpeedButton).Caption:=AnsiUpperCase((Panel1.Controls[count] as TSpeedButton).Caption);
           end;
         SpeedButton49.Caption:='Строчные';
         //SpeedButton34.Caption:='Пробел';
+        SpeedButton45.Caption:='Стереть';
       end;
 end;
 

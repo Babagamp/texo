@@ -59,6 +59,8 @@ type
     SpeedButton47: TSpeedButton;
     SpeedButton48: TSpeedButton;
     SpeedButton49: TSpeedButton;
+    SpeedButtonOk: TSpeedButton;
+    SpeedButtonCancel: TSpeedButton;
     procedure SpeedButtonPressKey(Sender: TObject);
     procedure SpeedButtonBackSpace(Sender: TObject);
     procedure SpeedButtonUpDownCase(Sender: TObject);
@@ -135,10 +137,17 @@ begin
     FormInputName.WindowState:= wsMaximized;
 
     //Выровняем Бокс с кнопками по центру
-    //y:=(FormInputName.ClientHeight - PanelKeyboard.Height) div 2;
-    //x:=(FormPay.ClientWidth - PInput.Width) div 2;
-    //PInput.Left := x;
-    //PInput.Top := y;
+    y:=(FormInputName.ClientHeight - PanelKeyboard.Height);
+    x:=(FormInputName.ClientWidth - PanelKeyboard.Width) div 2;
+    PanelKeyboard.Left := x;
+    PanelKeyboard.Top := y;
+
+   //Выровняем строку ввода с кнопками по центру
+    y:=(FormInputName.ClientHeight - EditInput.Height) div 2;
+    x:=(FormInputName.ClientWidth - EditInput.Width) div 2;
+    EditInput.Left := x;
+    EditInput.Top := y;
+
 
 end;
 

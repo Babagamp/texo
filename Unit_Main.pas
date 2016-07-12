@@ -36,7 +36,7 @@ var
 
 implementation
 
-uses Unit_Receiving;
+uses Unit_Receiving,Unit_InputName;
 
 {$R *.dfm}
 
@@ -164,8 +164,12 @@ begin
   Sum := 0;    // обнулим количество полученных денег
   SumPerevod := 390; // Сумма перевода (да!!!!)
   SaveLog('work.log',DateTimeToStr(Now) + ' Принимаем ' + IntToStr(Pay) + 'р.');
+  // Вызываем форму для ввода ФИО
+  FormInputName.ShowModal;
+
+
   // Вызываем форму для приема платежа
-  FormPay.ShowModal;
+  // FormPay.ShowModal;
 
   if sum <> 0 then
     begin

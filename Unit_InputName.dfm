@@ -1,9 +1,9 @@
-object Form1: TForm1
+object FormInputName: TFormInputName
   Left = 359
   Top = 134
-  Width = 934
-  Height = 852
-  Caption = 'Form1'
+  Width = 746
+  Height = 682
+  Caption = #1042#1074#1077#1076#1080#1090#1077' '#1060#1048#1054
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -419,10 +419,10 @@ object Form1: TForm1
     end
   end
   object Edit1: TEdit
-    Left = 136
-    Top = 96
+    Left = 184
+    Top = 128
     Width = 377
-    Height = 24
+    Height = 21
     TabOrder = 1
     Text = 'Edit1'
   end

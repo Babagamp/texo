@@ -1,4 +1,4 @@
-unit Unit1;
+unit Unit_InputName;
 
 interface
 
@@ -7,7 +7,7 @@ uses
   Dialogs, Buttons, ExtCtrls, StdCtrls;
 
 type
-  TForm1 = class(TForm)
+ TFormInputName = class(TForm)
     SpeedButton01: TSpeedButton;
     SpeedButton02: TSpeedButton;
     SpeedButton03: TSpeedButton;
@@ -70,13 +70,13 @@ type
   end;
 
 var
-  Form1: TForm1;
-
+  FormInputName: TFormInputName;
+  
 implementation
 
 {$R *.dfm}
 
-procedure TForm1.SpeedButtonPressKey(Sender: TObject);
+procedure TFormInputName.SpeedButtonPressKey(Sender: TObject);
 var Substr,Dest: string;
     i:integer;
 begin
@@ -90,7 +90,7 @@ Label1.Caption:=IntToStr(Edit1.SelStart);
 
 end;
 
-procedure TForm1.SpeedButtonBackSpace(Sender: TObject);
+procedure TFormInputName.SpeedButtonBackSpace(Sender: TObject);
 var str: String;
     i:integer;
 begin
@@ -102,7 +102,7 @@ Edit1.SelStart:=i-1;
 Label1.Caption:=IntToStr(Edit1.SelStart);
 end;
 
-procedure TForm1.SpeedButtonUpDownCase(Sender: TObject);
+procedure TFormInputName.SpeedButtonUpDownCase(Sender: TObject);
 var count: integer;
 begin
     If SpeedButton49.Caption = 'Строчные' then

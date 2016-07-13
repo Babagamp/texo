@@ -148,6 +148,7 @@ begin
     EditInput.Left := x;
     EditInput.Top := y;
 
+   // SpeedButtonOk. := mrOK;
 
 end;
 

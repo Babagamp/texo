@@ -4,13 +4,29 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, StdCtrls, xmldom, XMLIntf, msxmldom, XMLDoc, UCashCode, printers;
+  Dialogs, StdCtrls, xmldom, XMLIntf, msxmldom, XMLDoc, UCashCode, printers,
+  Buttons;
 
 type
   TMainForm = class(TForm)
     GBMainInput: TGroupBox;
-    BtnPay1: TButton;
     XMLDoc: TXMLDocument;
+    SpeedButton01: TSpeedButton;
+    SpeedButton02: TSpeedButton;
+    SpeedButton03: TSpeedButton;
+    SpeedButton04: TSpeedButton;
+    SpeedButton08: TSpeedButton;
+    SpeedButton09: TSpeedButton;
+    SpeedButton10: TSpeedButton;
+    SpeedButton11: TSpeedButton;
+    SpeedButton12: TSpeedButton;
+    SpeedButton13: TSpeedButton;
+    SpeedButton14: TSpeedButton;
+    SpeedButton15: TSpeedButton;
+    SpeedButton16: TSpeedButton;
+    SpeedButton05: TSpeedButton;
+    SpeedButton06: TSpeedButton;
+    SpeedButton07: TSpeedButton;
     procedure FormCreate(Sender: TObject);
     procedure BtnPay1Click(Sender: TObject);
 
@@ -138,9 +154,16 @@ end;
 
 
 procedure TMainForm.FormCreate(Sender: TObject);
-var x,y:integer;
+var x,y,Count:integer;
 
 begin
+    // Зададим название кнопка на панели и параметр tag в котором будет указатель на строку в массиве Price
+    For Count:=0 to GBMainInput.ControlCount-2 do
+    begin
+        (GBMainInput.Controls[Count] as TSpeedButton).Tag := Count+1;
+        (GBMainInput.Controls[Count] as TSpeedButton).Caption := IntToStr(Count+1) +'. ' + Price[Count+1].Name ;
+    end;
+
     // Сделаем окно во весь экран
     MainForm.BorderStyle:= bsNone;
     MainForm.WindowState:= wsMaximized;
@@ -195,6 +218,7 @@ procedure TMainForm.BtnPay1Click(Sender: TObject);
 var SumPerevod: integer;
 
 begin
+  //Sender.
   Pay := 450;  // Установим величину платежа
   Sum := 0;    // обнулим количество полученных денег
   SumPerevod := 390; // Сумма перевода (да!!!!)

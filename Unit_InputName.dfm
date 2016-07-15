@@ -429,18 +429,42 @@ object FormInputName: TFormInputName
       OnClick = SpeedButtonCancelClick
     end
   end
-  object EditInput: TEdit
-    Left = 136
-    Top = 254
-    Width = 489
-    Height = 39
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -27
-    Font.Name = 'Times New Roman'
-    Font.Style = []
-    ParentFont = False
+  object GroupBoxInput: TGroupBox
+    Left = 72
+    Top = 232
+    Width = 617
+    Height = 105
+    Caption = #1042#1074#1077#1076#1080#1090#1077' '#1074#1072#1096#1080' '#1060#1048#1054
     TabOrder = 1
-    Text = 'EditInput'
+    object EditInput: TEdit
+      Left = 64
+      Top = 34
+      Width = 497
+      Height = 39
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -27
+      Font.Name = 'Times New Roman'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 0
+      Text = 'EditInput'
+    end
+  end
+  object Panel1: TPanel
+    Left = 72
+    Top = 32
+    Width = 617
+    Height = 41
+    Caption = #1059#1089#1083#1091#1075#1072
+    TabOrder = 2
+  end
+  object Panel2: TPanel
+    Left = 232
+    Top = 104
+    Width = 297
+    Height = 41
+    Caption = #1057#1090#1086#1080#1084#1086#1089#1090#1100
+    TabOrder = 3
   end
 end

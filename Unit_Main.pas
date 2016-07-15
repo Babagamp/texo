@@ -29,6 +29,7 @@ type
     SpeedButton07: TSpeedButton;
     procedure FormCreate(Sender: TObject);
     procedure BtnPay1Click(Sender: TObject);
+    procedure SpeedButton07Click(Sender: TObject);
 
   private
     { Private declarations }
@@ -218,11 +219,16 @@ procedure TMainForm.BtnPay1Click(Sender: TObject);
 var SumPerevod: integer;
 
 begin
-  //Sender.
-  Pay := 450;  // Установим величину платежа
+  //(Sender as TSpeedButton).Tag;
+  Pay := Price[(Sender as TSpeedButton).Tag].Pay;  // Установим величину платежа
   Sum := 0;    // обнулим количество полученных денег
-  SumPerevod := 390; // Сумма перевода (да!!!!)
+  SumPerevod := Price[(Sender as TSpeedButton).Tag].Plat; // Сумма перевода (да!!!!)
   FormInputName.EditInput.Text:=''; //Обнулим строку ввода ФИО
+  // Зададим заголовок и цену на форму ввода ФИО
+  FormInputName.Panel1.Caption := Price[(Sender as TSpeedButton).Tag].Name;
+  FormInputName.Panel2.Caption := IntToStr(Price[(Sender as TSpeedButton).Tag].Pay) + ' р.';
+
+  // Логируем навсякий
   SaveLog('work.log',DateTimeToStr(Now) + ' Принимаем ' + IntToStr(Pay) + 'р.');
   //
   // Вызываем форму для ввода ФИО
@@ -238,11 +244,16 @@ begin
       end
 
   end;
-//   else Showmessage('Нажато Отмена');
+//   else ShowMessage('Нажато Отмена');
 
 
 end;
 
 
+
+procedure TMainForm.SpeedButton07Click(Sender: TObject);
+begin
+  ShowMessage('В стадии разработки');
+end;
 
 end.

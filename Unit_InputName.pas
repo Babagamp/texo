@@ -61,6 +61,9 @@ type
     SpeedButton49: TSpeedButton;
     SpeedButtonOk: TSpeedButton;
     SpeedButtonCancel: TSpeedButton;
+    GroupBoxInput: TGroupBox;
+    Panel1: TPanel;
+    Panel2: TPanel;
     procedure SpeedButtonPressKey(Sender: TObject);
     procedure SpeedButtonBackSpace(Sender: TObject);
     procedure SpeedButtonUpDownCase(Sender: TObject);
@@ -134,21 +137,30 @@ end;
 procedure TFormInputName.FormCreate(Sender: TObject);
     var x,y:integer; //Это переменнные для рассчета координат
 begin
-    // Сделаем окно во весь экран
+    // Окно во весь экран
     FormInputName.BorderStyle:= bsNone;
     FormInputName.WindowState:= wsMaximized;
 
-    //Выровняем Бокс с кнопками по центру
+    // Бокс с кнопками по центру
     y:=(FormInputName.ClientHeight - PanelKeyboard.Height);
     x:=(FormInputName.ClientWidth - PanelKeyboard.Width) div 2;
     PanelKeyboard.Left := x;
     PanelKeyboard.Top := y;
 
-   //Выровняем строку ввода с кнопками по центру
-    y:=(FormInputName.ClientHeight - EditInput.Height) div 2;
-    x:=(FormInputName.ClientWidth - EditInput.Width) div 2;
-    EditInput.Left := x;
-    EditInput.Top := y;
+   // Строка ввода по центру
+    y:=(FormInputName.ClientHeight - GroupBoxInput.Height) div 2;
+    x:=(FormInputName.ClientWidth - GroupBoxInput.Width) div 2;
+    GroupBoxInput.Left := x;
+    GroupBoxInput.Top := y;
+
+    // Название платежа по центру
+    y:=(FormInputName.ClientHeight - GroupBoxInput.Height) div 2;
+    x:=(FormInputName.ClientWidth - GroupBoxInput.Width) div 2;
+    Panel1.Left := x;
+    Panel1.Top := y;
+
+    // Сумма которая будет к оплате
+
 
    // SpeedButtonOk. := mrOK;
 

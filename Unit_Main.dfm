@@ -1,8 +1,8 @@
 object MainForm: TMainForm
   Left = 241
   Top = 76
-  Width = 1196
-  Height = 955
+  Width = 858
+  Height = 730
   Caption = #1055#1083#1072#1090#1077#1078#1080' '#1079#1072' '#1090#1077#1093#1086#1089#1084#1086#1090#1088
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -546,122 +546,123 @@ object MainForm: TMainForm
   PixelsPerInch = 96
   TextHeight = 13
   object GBMainInput: TGroupBox
-    Left = 264
-    Top = 104
-    Width = 801
-    Height = 601
+    Left = 56
+    Top = 56
+    Width = 729
+    Height = 585
     TabOrder = 0
     object SpeedButton01: TSpeedButton
-      Left = 83
+      Left = 46
       Top = 32
       Width = 300
       Height = 50
       OnClick = BtnPay1Click
     end
     object SpeedButton02: TSpeedButton
-      Left = 83
+      Left = 46
       Top = 101
       Width = 300
       Height = 50
       OnClick = BtnPay1Click
     end
     object SpeedButton03: TSpeedButton
-      Left = 83
+      Left = 46
       Top = 171
       Width = 300
       Height = 50
       OnClick = BtnPay1Click
     end
     object SpeedButton04: TSpeedButton
-      Left = 83
+      Left = 46
       Top = 241
       Width = 300
       Height = 50
       OnClick = BtnPay1Click
     end
     object SpeedButton08: TSpeedButton
-      Left = 83
+      Left = 46
       Top = 310
       Width = 300
       Height = 50
       OnClick = BtnPay1Click
     end
     object SpeedButton09: TSpeedButton
-      Left = 83
+      Left = 46
       Top = 380
       Width = 300
       Height = 50
       OnClick = BtnPay1Click
     end
     object SpeedButton10: TSpeedButton
-      Left = 83
+      Left = 46
       Top = 450
       Width = 300
       Height = 50
       OnClick = BtnPay1Click
     end
     object SpeedButton11: TSpeedButton
-      Left = 83
+      Left = 46
       Top = 520
       Width = 300
       Height = 50
       OnClick = BtnPay1Click
     end
     object SpeedButton12: TSpeedButton
-      Left = 421
+      Left = 384
       Top = 32
       Width = 300
       Height = 50
       OnClick = BtnPay1Click
     end
     object SpeedButton13: TSpeedButton
-      Left = 421
+      Left = 384
       Top = 101
       Width = 300
       Height = 50
       OnClick = BtnPay1Click
     end
     object SpeedButton14: TSpeedButton
-      Left = 421
+      Left = 384
       Top = 171
       Width = 300
       Height = 50
       OnClick = BtnPay1Click
     end
     object SpeedButton15: TSpeedButton
-      Left = 421
+      Left = 384
       Top = 241
       Width = 300
       Height = 50
       OnClick = BtnPay1Click
     end
     object SpeedButton16: TSpeedButton
-      Left = 421
+      Left = 384
       Top = 310
       Width = 300
       Height = 50
       OnClick = BtnPay1Click
     end
     object SpeedButton05: TSpeedButton
-      Left = 421
+      Left = 384
       Top = 380
       Width = 300
       Height = 50
       OnClick = BtnPay1Click
     end
     object SpeedButton06: TSpeedButton
-      Left = 421
+      Left = 384
       Top = 450
       Width = 300
       Height = 50
       OnClick = BtnPay1Click
     end
     object SpeedButton07: TSpeedButton
-      Left = 421
+      Left = 384
       Top = 520
       Width = 300
       Height = 50
       Caption = #1055#1088#1086#1080#1079#1074#1086#1083#1100#1085#1072#1103' '#1089#1091#1084#1084#1072
+      OnClick = SpeedButton07Click
     end
   end
   object XMLDoc: TXMLDocument

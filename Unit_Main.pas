@@ -13,16 +13,23 @@ type
     XMLDoc: TXMLDocument;
     procedure FormCreate(Sender: TObject);
     procedure BtnPay1Click(Sender: TObject);
+
   private
     { Private declarations }
   public
     { Public declarations }
         // Процедура записи в файл.
     procedure SaveLog(FileName:string;Mess:string);  //Процедура для записи лога
-    procedure PrintCheck(Sum:integer;SumPerevod:integer); //Процедура для распечатки чека
-
+    procedure PrintCheck(Sum:integer;SumPerevod:integer; FullName: String); //Процедура для распечатки чека
+    procedure ReadPrice();
 
   end;
+  TVariantPay = record
+    Name: string[126];
+    Pay: integer;
+    Plat: integer;
+  end;
+
 
 var
   MainForm: TMainForm;
@@ -33,6 +40,28 @@ var
   TimeOut : integer; // Здесь будет ожидания клиента с секундах, для приема денег
   // Очень хочется реализовать отмену ожидания, если клиент хоть что-то засунул в купюроприемник
   // Только вопрос, а надо ли?
+  Price : array[1..20] of TVariantPay = (
+    (Name: 'Легковые автомобили'; Pay: 450; Plat: 390),
+    (Name: 'Автобусы до 5 тонн'; Pay: 750; Plat: 700),
+    (Name: 'Автобусы свыше 5 тонн'; Pay: 900; Plat: 840),
+    (Name: 'Грузовые автомобили до 3,5 тонн'; Pay: 450; Plat: 410),
+    (Name: 'Грузовые автомобили до 12 тонн'; Pay: 850; Plat: 810),
+    (Name: 'Грузовые автомобили свыше 12 тонн'; Pay: 950; Plat: 880),
+    (Name: 'Мотоциклы'; Pay: 200; Plat: 180),
+    (Name: 'Прицепы до 3,5 тонн'; Pay: 350; Plat: 320),
+    (Name: 'Прицепы свыше 3,5 тонн'; Pay: 600; Plat: 570),
+    (Name: 'Грузовой автомобиль + прицеп'; Pay: 1550; Plat: 1450),
+    (Name: 'Диагностика подвески, тормозов'; Pay: 300; Plat: 250),
+    (Name: 'Регулировка фар'; Pay: 200; Plat: 150),
+    (Name: 'Деффектация мототехники'; Pay: 500; Plat: 450),
+    (Name: 'Клепка накладок на 1 ось'; Pay: 800; Plat: 750),
+    (Name: 'Замер СО и СН, Дымность'; Pay: 100; Plat: 80),
+    (Name: ''; Pay: 0; Plat: 0),
+    (Name: ''; Pay: 0; Plat: 0),
+    (Name: ''; Pay: 0; Plat: 0),
+    (Name: ''; Pay: 0; Plat: 0),
+    (Name: ''; Pay: 0; Plat: 0)
+  );
 
 implementation
 
@@ -40,8 +69,14 @@ uses Unit_Receiving,Unit_InputName;
 
 {$R *.dfm}
 
+// Забьем массив с ценами
+procedure TMainForm.ReadPrice();
+Begin
+  //Price[1]:=('Легковые автомобили'),(450),(390);
+End;
+
 // Распечатываем чек...
-procedure TMainForm.PrintCheck(Sum:integer;SumPerevod:Integer);
+procedure TMainForm.PrintCheck(Sum:integer;SumPerevod:Integer; FullName: String);
   var f : TextFile;
   today : TDateTime;
 
@@ -70,7 +105,7 @@ begin
     writeln(f,'Технический осмотр');
     writeln(f,'');
     writeln(f,'ФИО платильщика:');
-    writeln(f,'В.В Петрович');
+    writeln(f,FullName);
     writeln(f,'');
     writeln(f,'***************************************************************');
     writeln(f,'Принято наличными: ' + IntToStr(Sum));
@@ -163,18 +198,23 @@ begin
   Pay := 450;  // Установим величину платежа
   Sum := 0;    // обнулим количество полученных денег
   SumPerevod := 390; // Сумма перевода (да!!!!)
+  FormInputName.EditInput.Text:=''; //Обнулим строку ввода ФИО
   SaveLog('work.log',DateTimeToStr(Now) + ' Принимаем ' + IntToStr(Pay) + 'р.');
+  //
   // Вызываем форму для ввода ФИО
-  FormInputName.ShowModal;
+  If FormInputName.ShowModal = mrOk then
+  begin
+    SaveLog('work.log',DateTimeToStr(Now) + ' Принимаем от ' + FormInputName.EditInput.Text);
+    // Вызываем форму для приема платежа
+    FormPay.ShowModal;
 
+    if sum <> 0 then
+      begin
+        PrintCheck(Sum,SumPerevod,FormInputName.EditInput.Text);
+      end
 
-  // Вызываем форму для приема платежа
-  // FormPay.ShowModal;
-
-  if sum <> 0 then
-    begin
-       PrintCheck(Sum,SumPerevod);
-    end
+  end;
+//   else Showmessage('Нажато Отмена');
 
 
 end;

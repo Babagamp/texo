@@ -65,6 +65,8 @@ type
     procedure SpeedButtonBackSpace(Sender: TObject);
     procedure SpeedButtonUpDownCase(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure SpeedButtonOkClick(Sender: TObject);
+    procedure SpeedButtonCancelClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -150,6 +152,16 @@ begin
 
    // SpeedButtonOk. := mrOK;
 
+end;
+
+procedure TFormInputName.SpeedButtonOkClick(Sender: TObject);
+begin
+FormInputName.ModalResult:=mrOk;
+end;
+
+procedure TFormInputName.SpeedButtonCancelClick(Sender: TObject);
+begin
+FormInputName.ModalResult:=mrCancel;
 end;
 
 end.

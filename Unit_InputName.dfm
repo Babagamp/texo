@@ -418,6 +418,7 @@ object FormInputName: TFormInputName
       Width = 92
       Height = 40
       Caption = #1044#1072#1083#1077#1077
+      OnClick = SpeedButtonOkClick
     end
     object SpeedButtonCancel: TSpeedButton
       Left = 19
@@ -425,13 +426,20 @@ object FormInputName: TFormInputName
       Width = 85
       Height = 40
       Caption = #1054#1090#1084#1077#1085#1072
+      OnClick = SpeedButtonCancelClick
     end
   end
   object EditInput: TEdit
-    Left = 190
-    Top = 206
-    Width = 377
-    Height = 24
+    Left = 136
+    Top = 254
+    Width = 489
+    Height = 39
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -27
+    Font.Name = 'Times New Roman'
+    Font.Style = []
+    ParentFont = False
     TabOrder = 1
     Text = 'EditInput'
   end

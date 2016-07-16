@@ -278,7 +278,9 @@ begin
     // Вызываем форму для ввода ФИО
     If FormInputName.ShowModal = mrOk then
     begin
+
       SaveLog('work.log',DateTimeToStr(Now) + ' Принимаем от ' + FormInputName.EditInput.Text);
+
       // Вызываем форму для приема платежа
       FormPay.ShowModal;
 

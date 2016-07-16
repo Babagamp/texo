@@ -546,8 +546,8 @@ object MainForm: TMainForm
   PixelsPerInch = 120
   TextHeight = 16
   object GBMainInput: TGroupBox
-    Left = 69
-    Top = 69
+    Left = 45
+    Top = 46
     Width = 897
     Height = 732
     TabOrder = 0
@@ -556,6 +556,12 @@ object MainForm: TMainForm
       Top = 39
       Width = 369
       Height = 62
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -20
+      Font.Name = 'Times New Roman'
+      Font.Style = []
+      ParentFont = False
       OnClick = BtnPay1Click
     end
     object SpeedButton02: TSpeedButton
@@ -563,6 +569,12 @@ object MainForm: TMainForm
       Top = 124
       Width = 369
       Height = 62
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -20
+      Font.Name = 'Times New Roman'
+      Font.Style = []
+      ParentFont = False
       OnClick = BtnPay1Click
     end
     object SpeedButton03: TSpeedButton
@@ -570,6 +582,12 @@ object MainForm: TMainForm
       Top = 210
       Width = 369
       Height = 62
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -20
+      Font.Name = 'Times New Roman'
+      Font.Style = []
+      ParentFont = False
       OnClick = BtnPay1Click
     end
     object SpeedButton04: TSpeedButton
@@ -577,6 +595,12 @@ object MainForm: TMainForm
       Top = 297
       Width = 369
       Height = 61
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -20
+      Font.Name = 'Times New Roman'
+      Font.Style = []
+      ParentFont = False
       OnClick = BtnPay1Click
     end
     object SpeedButton08: TSpeedButton
@@ -584,6 +608,12 @@ object MainForm: TMainForm
       Top = 382
       Width = 369
       Height = 61
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -20
+      Font.Name = 'Times New Roman'
+      Font.Style = []
+      ParentFont = False
       OnClick = BtnPay1Click
     end
     object SpeedButton09: TSpeedButton
@@ -591,6 +621,12 @@ object MainForm: TMainForm
       Top = 468
       Width = 369
       Height = 61
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -20
+      Font.Name = 'Times New Roman'
+      Font.Style = []
+      ParentFont = False
       OnClick = BtnPay1Click
     end
     object SpeedButton10: TSpeedButton
@@ -598,6 +634,12 @@ object MainForm: TMainForm
       Top = 554
       Width = 369
       Height = 61
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -20
+      Font.Name = 'Times New Roman'
+      Font.Style = []
+      ParentFont = False
       OnClick = BtnPay1Click
     end
     object SpeedButton11: TSpeedButton
@@ -605,6 +647,12 @@ object MainForm: TMainForm
       Top = 640
       Width = 369
       Height = 62
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -20
+      Font.Name = 'Times New Roman'
+      Font.Style = []
+      ParentFont = False
       OnClick = BtnPay1Click
     end
     object SpeedButton12: TSpeedButton
@@ -612,6 +660,12 @@ object MainForm: TMainForm
       Top = 39
       Width = 369
       Height = 62
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -20
+      Font.Name = 'Times New Roman'
+      Font.Style = []
+      ParentFont = False
       OnClick = BtnPay1Click
     end
     object SpeedButton13: TSpeedButton
@@ -619,6 +673,12 @@ object MainForm: TMainForm
       Top = 124
       Width = 369
       Height = 62
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -20
+      Font.Name = 'Times New Roman'
+      Font.Style = []
+      ParentFont = False
       OnClick = BtnPay1Click
     end
     object SpeedButton14: TSpeedButton
@@ -626,6 +686,12 @@ object MainForm: TMainForm
       Top = 210
       Width = 369
       Height = 62
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -20
+      Font.Name = 'Times New Roman'
+      Font.Style = []
+      ParentFont = False
       OnClick = BtnPay1Click
     end
     object SpeedButton15: TSpeedButton
@@ -633,6 +699,12 @@ object MainForm: TMainForm
       Top = 297
       Width = 369
       Height = 61
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -20
+      Font.Name = 'Times New Roman'
+      Font.Style = []
+      ParentFont = False
       OnClick = BtnPay1Click
     end
     object SpeedButton16: TSpeedButton
@@ -640,6 +712,12 @@ object MainForm: TMainForm
       Top = 382
       Width = 369
       Height = 61
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -20
+      Font.Name = 'Times New Roman'
+      Font.Style = []
+      ParentFont = False
       OnClick = BtnPay1Click
     end
     object SpeedButton05: TSpeedButton
@@ -647,6 +725,12 @@ object MainForm: TMainForm
       Top = 468
       Width = 369
       Height = 61
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -20
+      Font.Name = 'Times New Roman'
+      Font.Style = []
+      ParentFont = False
       OnClick = BtnPay1Click
     end
     object SpeedButton06: TSpeedButton
@@ -654,6 +738,12 @@ object MainForm: TMainForm
       Top = 554
       Width = 369
       Height = 61
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -20
+      Font.Name = 'Times New Roman'
+      Font.Style = []
+      ParentFont = False
       OnClick = BtnPay1Click
     end
     object SpeedButton07: TSpeedButton
@@ -662,6 +752,12 @@ object MainForm: TMainForm
       Width = 369
       Height = 62
       Caption = #1055#1088#1086#1080#1079#1074#1086#1083#1100#1085#1072#1103' '#1089#1091#1084#1084#1072
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -20
+      Font.Name = 'Times New Roman'
+      Font.Style = []
+      ParentFont = False
       OnClick = SpeedButton07Click
     end
   end

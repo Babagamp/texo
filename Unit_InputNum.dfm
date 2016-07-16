@@ -27,7 +27,7 @@ object FormInputNum: TFormInputNum
       Height = 49
       Caption = '1'
       Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
+      Font.Color = cl3DDkShadow
       Font.Height = -33
       Font.Name = 'Times New Roman'
       Font.Style = []
@@ -41,7 +41,7 @@ object FormInputNum: TFormInputNum
       Height = 49
       Caption = '2'
       Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
+      Font.Color = cl3DDkShadow
       Font.Height = -33
       Font.Name = 'Times New Roman'
       Font.Style = []
@@ -55,7 +55,7 @@ object FormInputNum: TFormInputNum
       Height = 49
       Caption = '3'
       Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
+      Font.Color = cl3DDkShadow
       Font.Height = -33
       Font.Name = 'Times New Roman'
       Font.Style = []
@@ -69,7 +69,7 @@ object FormInputNum: TFormInputNum
       Height = 49
       Caption = '4'
       Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
+      Font.Color = cl3DDkShadow
       Font.Height = -33
       Font.Name = 'Times New Roman'
       Font.Style = []
@@ -83,7 +83,7 @@ object FormInputNum: TFormInputNum
       Height = 49
       Caption = '5'
       Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
+      Font.Color = cl3DDkShadow
       Font.Height = -33
       Font.Name = 'Times New Roman'
       Font.Style = []
@@ -97,7 +97,7 @@ object FormInputNum: TFormInputNum
       Height = 49
       Caption = '6'
       Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
+      Font.Color = cl3DDkShadow
       Font.Height = -33
       Font.Name = 'Times New Roman'
       Font.Style = []
@@ -111,7 +111,7 @@ object FormInputNum: TFormInputNum
       Height = 49
       Caption = '7'
       Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
+      Font.Color = cl3DDkShadow
       Font.Height = -33
       Font.Name = 'Times New Roman'
       Font.Style = []
@@ -125,7 +125,7 @@ object FormInputNum: TFormInputNum
       Height = 49
       Caption = '8'
       Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
+      Font.Color = cl3DDkShadow
       Font.Height = -33
       Font.Name = 'Times New Roman'
       Font.Style = []
@@ -139,7 +139,7 @@ object FormInputNum: TFormInputNum
       Height = 49
       Caption = '9'
       Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
+      Font.Color = cl3DDkShadow
       Font.Height = -33
       Font.Name = 'Times New Roman'
       Font.Style = []
@@ -153,7 +153,7 @@ object FormInputNum: TFormInputNum
       Height = 49
       Caption = '0'
       Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
+      Font.Color = cl3DDkShadow
       Font.Height = -33
       Font.Name = 'Times New Roman'
       Font.Style = []
@@ -167,7 +167,7 @@ object FormInputNum: TFormInputNum
       Height = 49
       Caption = 'CE'
       Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
+      Font.Color = cl3DDkShadow
       Font.Height = -23
       Font.Name = 'Times New Roman'
       Font.Style = []
@@ -181,7 +181,7 @@ object FormInputNum: TFormInputNum
       Height = 49
       Caption = 'C'
       Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
+      Font.Color = cl3DDkShadow
       Font.Height = -23
       Font.Name = 'Times New Roman'
       Font.Style = []

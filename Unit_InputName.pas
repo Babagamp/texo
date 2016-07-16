@@ -112,15 +112,17 @@ end;
 procedure TFormInputName.SpeedButtonUpDownCase(Sender: TObject);
 var count: integer;
 begin
-    If SpeedButton49.Caption = 'Строчные' then
+    If SpeedButton49.Caption = 'A->a' then
       Begin
         for Count:=0 to PanelKeyboard.ControlCount-1 do
           Begin
              (PanelKeyboard.Controls[count] as TSpeedButton).Caption:=AnsiLowerCase((PanelKeyboard.Controls[count] as TSpeedButton).Caption);
           end;
-        SpeedButton49.Caption:='Заглавные';
+        SpeedButton49.Caption:='a->A';
         //SpeedButton34.Caption:='Пробел';
         SpeedButton45.Caption:='Стереть';
+        SpeedButtonOk.Caption:='Далее';
+        SpeedButtonCancel.Caption:='Отмена';
       end
       else
       Begin
@@ -128,9 +130,11 @@ begin
           Begin
              (PanelKeyboard.Controls[count] as TSpeedButton).Caption:=AnsiUpperCase((PanelKeyboard.Controls[count] as TSpeedButton).Caption);
           end;
-        SpeedButton49.Caption:='Строчные';
+        SpeedButton49.Caption:='A->a';
         //SpeedButton34.Caption:='Пробел';
         SpeedButton45.Caption:='Стереть';
+        SpeedButtonOk.Caption:='Далее';
+        SpeedButtonCancel.Caption:='Отмена';
       end;
 end;
 

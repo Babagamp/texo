@@ -82,7 +82,7 @@ var
 
 implementation
 
-uses Unit_Receiving,Unit_InputName;
+uses Unit_Receiving,Unit_InputName,Unit_InputNum;
 
 {$R *.dfm}
 
@@ -219,11 +219,13 @@ procedure TMainForm.BtnPay1Click(Sender: TObject);
 var SumPerevod: integer;
 
 begin
+
   //(Sender as TSpeedButton).Tag;
   Pay := Price[(Sender as TSpeedButton).Tag].Pay;  // Установим величину платежа
   Sum := 0;    // обнулим количество полученных денег
   SumPerevod := Price[(Sender as TSpeedButton).Tag].Plat; // Сумма перевода (да!!!!)
   FormInputName.EditInput.Text:=''; //Обнулим строку ввода ФИО
+
   // Зададим заголовок и цену на форму ввода ФИО
   FormInputName.Panel1.Caption := Price[(Sender as TSpeedButton).Tag].Name;
   FormInputName.Panel2.Caption := IntToStr(Price[(Sender as TSpeedButton).Tag].Pay) + ' р.';
@@ -252,8 +254,43 @@ end;
 
 
 procedure TMainForm.SpeedButton07Click(Sender: TObject);
+
+var SumPerevod: integer;
+
 begin
-  ShowMessage('В стадии разработки');
+  //ShowMessage('В стадии разработки');
+  FormInputNum.PanelInput.Caption := '0';
+  If FormInputNum.ShowModal = mrOk then
+   begin
+    Pay := StrToInt(FormInputNum.PanelInput.Caption);  // Установим величину платежа
+    Sum := 0;    // обнулим количество полученных денег
+    SumPerevod := Pay - 50; // Сумма перевода (да!!!!)
+
+    FormInputName.EditInput.Text:=''; //Обнулим строку ввода ФИО
+
+    // Зададим заголовок и цену на форму ввода ФИО
+    FormInputName.Panel1.Caption := 'Введенная к оплате сумма';
+    FormInputName.Panel2.Caption := FormInputNum.PanelInput.Caption + ' р.';
+
+    // Логируем навсякий
+    SaveLog('work.log',DateTimeToStr(Now) + ' Принимаем ' + IntToStr(Pay) + 'р.');
+
+    // Вызываем форму для ввода ФИО
+    If FormInputName.ShowModal = mrOk then
+    begin
+      SaveLog('work.log',DateTimeToStr(Now) + ' Принимаем от ' + FormInputName.EditInput.Text);
+      // Вызываем форму для приема платежа
+      FormPay.ShowModal;
+
+      if sum <> 0 then
+        begin
+          PrintCheck(Sum,SumPerevod,FormInputName.EditInput.Text);
+        end
+
+    end;
+
+   end;
+
 end;
 
 end.

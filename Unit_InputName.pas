@@ -136,30 +136,39 @@ end;
 
 procedure TFormInputName.FormCreate(Sender: TObject);
     var x,y:integer; //Это переменнные для рассчета координат
+        d: integer; // Расстояние между панелями
 begin
     // Окно во весь экран
-    FormInputName.BorderStyle:= bsNone;
-    FormInputName.WindowState:= wsMaximized;
+    FormInputName.BorderStyle := bsNone;
+    FormInputName.WindowState := wsMaximized;
 
-    // Бокс с кнопками по центру
-    y:=(FormInputName.ClientHeight - PanelKeyboard.Height);
-    x:=(FormInputName.ClientWidth - PanelKeyboard.Width) div 2;
-    PanelKeyboard.Left := x;
-    PanelKeyboard.Top := y;
+    // Расстояние между панелями вычислять после раскрытия на весь экран :)
+    d := ( FormInputName.ClientHeight - (Panel1.Height + Panel2.Height +
+            GroupBoxInput.Height + PanelKeyboard.Height) )  div 5;
 
-   // Строка ввода по центру
-    y:=(FormInputName.ClientHeight - GroupBoxInput.Height) div 2;
-    x:=(FormInputName.ClientWidth - GroupBoxInput.Width) div 2;
-    GroupBoxInput.Left := x;
-    GroupBoxInput.Top := y;
-
-    // Название платежа по центру
-    y:=(FormInputName.ClientHeight - GroupBoxInput.Height) div 2;
-    x:=(FormInputName.ClientWidth - GroupBoxInput.Width) div 2;
+    // Название платежа по центру вверху
+    y := d;
+    x := (FormInputName.ClientWidth - Panel1.Width) div 2;
     Panel1.Left := x;
     Panel1.Top := y;
 
-    // Сумма которая будет к оплате
+    // Сумма к оплате
+    y := Panel1.Height + 2*d;
+    x := (FormInputName.ClientWidth - Panel2.Width) div 2;
+    Panel2.Left := x;
+    Panel2.Top := y;
+
+   // Строка ввода по центру
+    y := Panel1.Height + Panel2.Height + 3*d;
+    x := (FormInputName.ClientWidth - GroupBoxInput.Width) div 2;
+    GroupBoxInput.Left := x;
+    GroupBoxInput.Top := y;
+
+    // Бокс с кнопками по центру внизу
+    y := Panel1.Height + Panel2.Height + GroupBoxInput.Height +  4*d;
+    x := (FormInputName.ClientWidth - PanelKeyboard.Width) div 2;
+    PanelKeyboard.Left := x;
+    PanelKeyboard.Top := y;
 
 
    // SpeedButtonOk. := mrOK;

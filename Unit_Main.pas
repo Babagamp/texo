@@ -15,6 +15,9 @@ type
     SpeedButton02: TSpeedButton;
     SpeedButton03: TSpeedButton;
     SpeedButton04: TSpeedButton;
+    SpeedButton05: TSpeedButton;
+    SpeedButton06: TSpeedButton;
+    SpeedButton07: TSpeedButton;
     SpeedButton08: TSpeedButton;
     SpeedButton09: TSpeedButton;
     SpeedButton10: TSpeedButton;
@@ -24,12 +27,9 @@ type
     SpeedButton14: TSpeedButton;
     SpeedButton15: TSpeedButton;
     SpeedButton16: TSpeedButton;
-    SpeedButton05: TSpeedButton;
-    SpeedButton06: TSpeedButton;
-    SpeedButton07: TSpeedButton;
     procedure FormCreate(Sender: TObject);
     procedure BtnPay1Click(Sender: TObject);
-    procedure SpeedButton07Click(Sender: TObject);
+    procedure SpeedButton16Click(Sender: TObject);
 
   private
     { Private declarations }
@@ -73,7 +73,7 @@ var
     (Name: 'Деффектация мототехники'; Pay: 500; Plat: 450),
     (Name: 'Клепка накладок на 1 ось'; Pay: 800; Plat: 750),
     (Name: 'Замер СО и СН, Дымность'; Pay: 100; Plat: 80),
-    (Name: ''; Pay: 0; Plat: 0),
+    (Name: 'Произвольная сумма'; Pay: 0; Plat: 0),
     (Name: ''; Pay: 0; Plat: 0),
     (Name: ''; Pay: 0; Plat: 0),
     (Name: ''; Pay: 0; Plat: 0),
@@ -106,7 +106,7 @@ begin
     writeln(f,'Банк "Богородский" (ООО) ИНН 5245004890');
     writeln(f,'Лицензия ЦБ РФ №1277 от 23.08.2012г.');
     writeln(f,'Перевод принят банкоматом: 85202327');
-    writeln(f,'Адрес: арзамас , короленко, 2');
+    writeln(f,'Адрес: Арзамас , ул. Короленко, д.2');
     writeln(f,'"СТО"');
     writeln(f,'Дата: ' + DateToStr(today) + '  Время: ' + TimeToStr(today));
     writeln(f,'Чек/квитанция: 000000000');
@@ -154,26 +154,50 @@ Begin
 end;
 
 
+//Вызывается при создании формы, здесь все инициализируем и расставим по местам
 procedure TMainForm.FormCreate(Sender: TObject);
-var x,y,Count:integer;
+var x,y,Count,d:integer;
 
 begin
-    // Зададим название кнопка на панели и параметр tag в котором будет указатель на строку в массиве Price
-    For Count:=0 to GBMainInput.ControlCount-2 do
-    begin
-        (GBMainInput.Controls[Count] as TSpeedButton).Tag := Count+1;
-        (GBMainInput.Controls[Count] as TSpeedButton).Caption := IntToStr(Count+1) +'. ' + Price[Count+1].Name ;
-    end;
 
     // Сделаем окно во весь экран
     MainForm.BorderStyle:= bsNone;
     MainForm.WindowState:= wsMaximized;
+
+    // Зададим размеры бокса в зависимости от размеров экрана
+    GBMainInput.Height:= MainForm.ClientHeight - 40;
+    GBMainInput.Width:= MainForm.ClientWidth - 40;
 
     //Выровняем Бокс с кнопками по центру
     y:=(MainForm.ClientHeight - GBMainInput.Height) div 2;
     x:=(MainForm.ClientWidth - GBMainInput.Width) div 2;
     GBMainInput.Left := x;
     GBMainInput.Top := y;
+
+    // Вычисление размера кнопки
+    // Пусть y единица измерения, тогда кнопку примем за 5y, так как кнопок 8
+    // в стобце, то получим всего в клиенской части будет 8*5+9 = 49 единиц.
+    //  Тогда единица будет
+    d:= GBMainInput.ClientHeight div 49;
+    y:=5*d;
+    // А примем ка расстояние между стобцами тоже равным y, тогда размер кнопки
+    // будет, учитывая что расстояний таких будет 3
+    x := (GBMainInput.ClientWidth - 3*d) div 2;
+
+
+    // Зададим название кнопка на панели и параметр tag в котором будет
+    // указатель на строку в массиве Price, а так же зададим положение кнопок
+    // и их размер
+    For Count:=0 to GBMainInput.ControlCount-1 do
+    begin
+        (GBMainInput.Controls[Count] as TSpeedButton).Tag := Count+1;
+        (GBMainInput.Controls[Count] as TSpeedButton).Caption := {IntToStr(Count+1) +'. ' + }Price[Count+1].Name ;
+        (GBMainInput.Controls[Count] as TSpeedButton).Height := y;
+        (GBMainInput.Controls[Count] as TSpeedButton).Width := x;
+        (GBMainInput.Controls[Count] as TSpeedButton).Left := d + (d+x)*(Count div 8);
+        (GBMainInput.Controls[Count] as TSpeedButton).Top := d + (d+y)*(Count mod 8);
+        (GBMainInput.Controls[Count] as TSpeedButton).Font.Size:=d+d div 2;
+    end;
 
     //Инициализируем переменную с принимаемыми купюрами
     // Проверка просто существования файла недостаточна
@@ -253,7 +277,7 @@ end;
 
 
 
-procedure TMainForm.SpeedButton07Click(Sender: TObject);
+procedure TMainForm.SpeedButton16Click(Sender: TObject);
 
 var SumPerevod: integer;
 

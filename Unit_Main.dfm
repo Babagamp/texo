@@ -1,13 +1,13 @@
 object MainForm: TMainForm
-  Left = 241
-  Top = 76
-  Width = 1061
-  Height = 924
+  Left = 278
+  Top = 46
+  Width = 1004
+  Height = 724
   Caption = #1055#1083#1072#1090#1077#1078#1080' '#1079#1072' '#1090#1077#1093#1086#1089#1084#1086#1090#1088
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
-  Font.Height = -14
+  Font.Height = -11
   Font.Name = 'MS Sans Serif'
   Font.Style = []
   Icon.Data = {
@@ -543,222 +543,222 @@ object MainForm: TMainForm
     FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
   OldCreateOrder = False
   OnCreate = FormCreate
-  PixelsPerInch = 120
-  TextHeight = 16
+  PixelsPerInch = 96
+  TextHeight = 13
   object GBMainInput: TGroupBox
-    Left = 45
-    Top = 46
-    Width = 897
-    Height = 732
+    Left = 56
+    Top = 8
+    Width = 889
+    Height = 633
     TabOrder = 0
     object SpeedButton01: TSpeedButton
-      Left = 57
-      Top = 39
-      Width = 369
-      Height = 62
+      Left = 46
+      Top = 24
+      Width = 400
+      Height = 60
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
-      Font.Height = -20
+      Font.Height = -27
       Font.Name = 'Times New Roman'
       Font.Style = []
       ParentFont = False
       OnClick = BtnPay1Click
     end
     object SpeedButton02: TSpeedButton
-      Left = 57
-      Top = 124
-      Width = 369
-      Height = 62
+      Left = 46
+      Top = 98
+      Width = 400
+      Height = 60
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
-      Font.Height = -20
+      Font.Height = -27
       Font.Name = 'Times New Roman'
       Font.Style = []
       ParentFont = False
       OnClick = BtnPay1Click
     end
     object SpeedButton03: TSpeedButton
-      Left = 57
-      Top = 210
-      Width = 369
-      Height = 62
+      Left = 46
+      Top = 172
+      Width = 400
+      Height = 60
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
-      Font.Height = -20
+      Font.Height = -27
       Font.Name = 'Times New Roman'
       Font.Style = []
       ParentFont = False
       OnClick = BtnPay1Click
     end
     object SpeedButton04: TSpeedButton
-      Left = 57
-      Top = 297
-      Width = 369
-      Height = 61
+      Left = 46
+      Top = 246
+      Width = 400
+      Height = 60
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
-      Font.Height = -20
-      Font.Name = 'Times New Roman'
-      Font.Style = []
-      ParentFont = False
-      OnClick = BtnPay1Click
-    end
-    object SpeedButton08: TSpeedButton
-      Left = 57
-      Top = 382
-      Width = 369
-      Height = 61
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -20
-      Font.Name = 'Times New Roman'
-      Font.Style = []
-      ParentFont = False
-      OnClick = BtnPay1Click
-    end
-    object SpeedButton09: TSpeedButton
-      Left = 57
-      Top = 468
-      Width = 369
-      Height = 61
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -20
-      Font.Name = 'Times New Roman'
-      Font.Style = []
-      ParentFont = False
-      OnClick = BtnPay1Click
-    end
-    object SpeedButton10: TSpeedButton
-      Left = 57
-      Top = 554
-      Width = 369
-      Height = 61
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -20
-      Font.Name = 'Times New Roman'
-      Font.Style = []
-      ParentFont = False
-      OnClick = BtnPay1Click
-    end
-    object SpeedButton11: TSpeedButton
-      Left = 57
-      Top = 640
-      Width = 369
-      Height = 62
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -20
-      Font.Name = 'Times New Roman'
-      Font.Style = []
-      ParentFont = False
-      OnClick = BtnPay1Click
-    end
-    object SpeedButton12: TSpeedButton
-      Left = 473
-      Top = 39
-      Width = 369
-      Height = 62
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -20
-      Font.Name = 'Times New Roman'
-      Font.Style = []
-      ParentFont = False
-      OnClick = BtnPay1Click
-    end
-    object SpeedButton13: TSpeedButton
-      Left = 473
-      Top = 124
-      Width = 369
-      Height = 62
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -20
-      Font.Name = 'Times New Roman'
-      Font.Style = []
-      ParentFont = False
-      OnClick = BtnPay1Click
-    end
-    object SpeedButton14: TSpeedButton
-      Left = 473
-      Top = 210
-      Width = 369
-      Height = 62
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -20
-      Font.Name = 'Times New Roman'
-      Font.Style = []
-      ParentFont = False
-      OnClick = BtnPay1Click
-    end
-    object SpeedButton15: TSpeedButton
-      Left = 473
-      Top = 297
-      Width = 369
-      Height = 61
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -20
-      Font.Name = 'Times New Roman'
-      Font.Style = []
-      ParentFont = False
-      OnClick = BtnPay1Click
-    end
-    object SpeedButton16: TSpeedButton
-      Left = 473
-      Top = 382
-      Width = 369
-      Height = 61
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -20
+      Font.Height = -27
       Font.Name = 'Times New Roman'
       Font.Style = []
       ParentFont = False
       OnClick = BtnPay1Click
     end
     object SpeedButton05: TSpeedButton
-      Left = 473
-      Top = 468
-      Width = 369
-      Height = 61
+      Left = 46
+      Top = 321
+      Width = 400
+      Height = 60
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
-      Font.Height = -20
+      Font.Height = -27
       Font.Name = 'Times New Roman'
       Font.Style = []
       ParentFont = False
       OnClick = BtnPay1Click
     end
     object SpeedButton06: TSpeedButton
-      Left = 473
-      Top = 554
-      Width = 369
-      Height = 61
+      Left = 46
+      Top = 395
+      Width = 400
+      Height = 60
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
-      Font.Height = -20
+      Font.Height = -27
       Font.Name = 'Times New Roman'
       Font.Style = []
       ParentFont = False
       OnClick = BtnPay1Click
     end
     object SpeedButton07: TSpeedButton
-      Left = 473
-      Top = 640
-      Width = 369
-      Height = 62
-      Caption = #1055#1088#1086#1080#1079#1074#1086#1083#1100#1085#1072#1103' '#1089#1091#1084#1084#1072
+      Left = 46
+      Top = 469
+      Width = 400
+      Height = 60
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
-      Font.Height = -20
+      Font.Height = -27
       Font.Name = 'Times New Roman'
       Font.Style = []
       ParentFont = False
-      OnClick = SpeedButton07Click
+      OnClick = BtnPay1Click
+    end
+    object SpeedButton08: TSpeedButton
+      Left = 46
+      Top = 544
+      Width = 400
+      Height = 60
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -27
+      Font.Name = 'Times New Roman'
+      Font.Style = []
+      ParentFont = False
+      OnClick = BtnPay1Click
+    end
+    object SpeedButton09: TSpeedButton
+      Left = 456
+      Top = 24
+      Width = 400
+      Height = 60
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -27
+      Font.Name = 'Times New Roman'
+      Font.Style = []
+      ParentFont = False
+      OnClick = BtnPay1Click
+    end
+    object SpeedButton10: TSpeedButton
+      Left = 456
+      Top = 98
+      Width = 400
+      Height = 60
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -27
+      Font.Name = 'Times New Roman'
+      Font.Style = []
+      ParentFont = False
+      OnClick = BtnPay1Click
+    end
+    object SpeedButton11: TSpeedButton
+      Left = 456
+      Top = 172
+      Width = 400
+      Height = 60
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -27
+      Font.Name = 'Times New Roman'
+      Font.Style = []
+      ParentFont = False
+      OnClick = BtnPay1Click
+    end
+    object SpeedButton12: TSpeedButton
+      Left = 456
+      Top = 246
+      Width = 400
+      Height = 60
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -27
+      Font.Name = 'Times New Roman'
+      Font.Style = []
+      ParentFont = False
+      OnClick = BtnPay1Click
+    end
+    object SpeedButton13: TSpeedButton
+      Left = 456
+      Top = 321
+      Width = 400
+      Height = 60
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -27
+      Font.Name = 'Times New Roman'
+      Font.Style = []
+      ParentFont = False
+      OnClick = BtnPay1Click
+    end
+    object SpeedButton14: TSpeedButton
+      Left = 456
+      Top = 395
+      Width = 400
+      Height = 60
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -27
+      Font.Name = 'Times New Roman'
+      Font.Style = []
+      ParentFont = False
+      OnClick = BtnPay1Click
+    end
+    object SpeedButton15: TSpeedButton
+      Left = 456
+      Top = 469
+      Width = 400
+      Height = 60
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -27
+      Font.Name = 'Times New Roman'
+      Font.Style = []
+      ParentFont = False
+      OnClick = BtnPay1Click
+    end
+    object SpeedButton16: TSpeedButton
+      Left = 456
+      Top = 544
+      Width = 400
+      Height = 60
+      Caption = #1055#1088#1086#1080#1079#1074#1086#1083#1100#1085#1072#1103' '#1089#1091#1084#1084#1072
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -27
+      Font.Name = 'Times New Roman'
+      Font.Style = []
+      ParentFont = False
+      OnClick = SpeedButton16Click
     end
   end
   object XMLDoc: TXMLDocument

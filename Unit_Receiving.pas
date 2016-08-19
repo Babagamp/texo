@@ -9,13 +9,13 @@ uses
 type
   TFormPay = class(TForm)
     PInput: TPanel;
-    Label1: TLabel;
     Label2: TLabel;
     Label3: TLabel;
     Button1: TButton;
-    LPay: TLabel;
-    LReceive: TLabel;
-    LLeftover: TLabel;
+    PReceive: TPanel;
+    PLeftover: TPanel;
+    PPay: TPanel;
+    Label1: TLabel;
     procedure FormCreate(Sender: TObject);
     procedure Button1Click(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
@@ -62,8 +62,8 @@ end;
 procedure TFormPay.PolingBillCC(Nominal: word; var CanLoop: boolean);
 begin
   Sum:=Sum+Nominal;
-  FormPay.LReceive.Caption:= IntTostr(Sum);
-  FormPay.LLeftover.Caption:= IntToStr(Pay-Sum);
+  FormPay.PReceive.Caption:= IntTostr(Sum);
+  FormPay.PLeftover.Caption:= IntToStr(Pay-Sum);
   Application.ProcessMessages; // Чтобы не залипала форма
 end;
 
@@ -106,9 +106,9 @@ end;
 procedure TFormPay.FormActivate(Sender: TObject);
 begin
 
-    LPay.Caption:=IntToStr(Pay);
-    LLeftover.Caption:= IntToStr(Pay);
-    LReceive.Caption:= IntTostr(Sum);
+    PPay.Caption:=IntToStr(Pay);
+    PLeftover.Caption:= IntToStr(Pay);
+    PReceive.Caption:= IntTostr(Sum);
 
     // Попробуем подключить купюроприемник на COM1
     CashCode.NamberComPort := NumberCOM;

@@ -59,11 +59,12 @@ type
     SpeedButton47: TSpeedButton;
     SpeedButton48: TSpeedButton;
     SpeedButton49: TSpeedButton;
-    SpeedButtonOk: TSpeedButton;
-    SpeedButtonCancel: TSpeedButton;
     GroupBoxInput: TGroupBox;
     Panel1: TPanel;
     Panel2: TPanel;
+    Panel3: TPanel;
+    SpeedButtonCancel: TSpeedButton;
+    SpeedButtonOk: TSpeedButton;
     procedure SpeedButtonPressKey(Sender: TObject);
     procedure SpeedButtonBackSpace(Sender: TObject);
     procedure SpeedButtonUpDownCase(Sender: TObject);
@@ -112,17 +113,17 @@ end;
 procedure TFormInputName.SpeedButtonUpDownCase(Sender: TObject);
 var count: integer;
 begin
-    If SpeedButton49.Caption = 'A->a' then
+    If SpeedButton49.Caption = 'строчные' then
       Begin
         for Count:=0 to PanelKeyboard.ControlCount-1 do
           Begin
              (PanelKeyboard.Controls[count] as TSpeedButton).Caption:=AnsiLowerCase((PanelKeyboard.Controls[count] as TSpeedButton).Caption);
           end;
-        SpeedButton49.Caption:='a->A';
+        SpeedButton49.Caption:='Заглавные';
         //SpeedButton34.Caption:='Пробел';
-        SpeedButton45.Caption:='Стереть';
-        SpeedButtonOk.Caption:='Далее';
-        SpeedButtonCancel.Caption:='Отмена';
+        SpeedButton45.Caption:='стереть';
+        //SpeedButtonOk.Caption:='Далее';
+        //SpeedButtonCancel.Caption:='Отмена';
       end
       else
       Begin
@@ -130,11 +131,11 @@ begin
           Begin
              (PanelKeyboard.Controls[count] as TSpeedButton).Caption:=AnsiUpperCase((PanelKeyboard.Controls[count] as TSpeedButton).Caption);
           end;
-        SpeedButton49.Caption:='A->a';
+        SpeedButton49.Caption:='строчные';
         //SpeedButton34.Caption:='Пробел';
-        SpeedButton45.Caption:='Стереть';
-        SpeedButtonOk.Caption:='Далее';
-        SpeedButtonCancel.Caption:='Отмена';
+        SpeedButton45.Caption:='стереть';
+        //SpeedButtonOk.Caption:='Далее';
+        //SpeedButtonCancel.Caption:='Отмена';
       end;
 end;
 
@@ -148,7 +149,7 @@ begin
 
     // Расстояние между панелями вычислять после раскрытия на весь экран :)
     d := ( FormInputName.ClientHeight - (Panel1.Height + Panel2.Height +
-            GroupBoxInput.Height + PanelKeyboard.Height) )  div 5;
+            GroupBoxInput.Height + PanelKeyboard.Height + Panel3.Height))  div 6;
 
     // Название платежа по центру вверху
     y := d;
@@ -174,8 +175,11 @@ begin
     PanelKeyboard.Left := x;
     PanelKeyboard.Top := y;
 
-
-   // SpeedButtonOk. := mrOK;
+    // Бокс с кнопками управления внизу
+    y := Panel1.Height + Panel2.Height + GroupBoxInput.Height + PanelKeyboard.Height + 5*d;
+    x := (FormInputName.ClientWidth - Panel3.Width) div 2;
+    Panel3.Left := x;
+    Panel3.Top := y;
 
 end;
 

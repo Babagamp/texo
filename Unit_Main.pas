@@ -59,14 +59,14 @@ var
   // Только вопрос, а надо ли?
   Price : array[1..20] of TVariantPay = (
     (Name: 'Легковые автомобили'; Pay: 450; Plat: 390),
-    (Name: 'Автобусы до 5 тонн'; Pay: 750; Plat: 700),
-    (Name: 'Автобусы свыше 5 тонн'; Pay: 900; Plat: 840),
-    (Name: 'Грузовые автомобили до 3,5 тонн'; Pay: 450; Plat: 410),
-    (Name: 'Грузовые автомобили до 12 тонн'; Pay: 850; Plat: 810),
-    (Name: 'Грузовые автомобили свыше 12 тонн'; Pay: 950; Plat: 880),
+    (Name: 'Автобусы до 5т.'; Pay: 750; Plat: 700),
+    (Name: 'Автобусы свыше 5т.'; Pay: 900; Plat: 840),
+    (Name: 'Грузовые автомобили до 3,5т.'; Pay: 450; Plat: 410),
+    (Name: 'Грузовые автомобили до 12т.'; Pay: 850; Plat: 810),
+    (Name: 'Грузовые автомобили свыше 12т.'; Pay: 950; Plat: 880),
     (Name: 'Мотоциклы'; Pay: 200; Plat: 180),
-    (Name: 'Прицепы до 3,5 тонн'; Pay: 350; Plat: 320),
-    (Name: 'Прицепы свыше 3,5 тонн'; Pay: 600; Plat: 570),
+    (Name: 'Прицепы до 3,5т.'; Pay: 350; Plat: 320),
+    (Name: 'Прицепы свыше 3,5т.'; Pay: 600; Plat: 570),
     (Name: 'Грузовой автомобиль + прицеп'; Pay: 1550; Plat: 1450),
     (Name: 'Диагностика подвески, тормозов'; Pay: 300; Plat: 250),
     (Name: 'Регулировка фар'; Pay: 200; Plat: 150),
@@ -252,7 +252,7 @@ begin
 
   // Зададим заголовок и цену на форму ввода ФИО
   FormInputName.Panel1.Caption := Price[(Sender as TSpeedButton).Tag].Name;
-  FormInputName.Panel2.Caption := IntToStr(Price[(Sender as TSpeedButton).Tag].Pay) + ' р.';
+  FormInputName.Panel2.Caption := IntToStr(Price[(Sender as TSpeedButton).Tag].Pay) + ' руб.';
 
   // Логируем навсякий
   SaveLog('work.log',DateTimeToStr(Now) + ' Принимаем ' + IntToStr(Pay) + 'р.');
@@ -294,7 +294,7 @@ begin
 
     // Зададим заголовок и цену на форму ввода ФИО
     FormInputName.Panel1.Caption := 'Введенная к оплате сумма';
-    FormInputName.Panel2.Caption := FormInputNum.PanelInput.Caption + ' р.';
+    FormInputName.Panel2.Caption := FormInputNum.PanelInput.Caption + ' руб.';
 
     // Логируем навсякий
     SaveLog('work.log',DateTimeToStr(Now) + ' Принимаем ' + IntToStr(Pay) + 'р.');
